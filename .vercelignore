@@ -1,0 +1,33 @@
+# Development files
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.env
+.env.local
+.env.development
+.env.test
+
+# Test files
+__tests__
+*.test.js
+*.spec.js
+coverage
+
+# Documentation
+docs
+jsdoc.json
+
+# Development tools
+.eslintrc.js
+.prettierrc
+.vscode
+.github
+.git
+
+# Build tools
+.travis.yml
+.circleci
+
+# Local logs that shouldn't go to production
+logs/*.log

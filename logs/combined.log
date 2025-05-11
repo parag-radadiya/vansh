@@ -10,3 +10,64 @@
 2025-05-11 12:16:56 [INFO]: GET /api-docs/swagger-ui-bundle.js 200 1468326 - 13.828 ms - {}
 2025-05-11 12:16:56 [INFO]: GET /api-docs/favicon-32x32.png 304 - - 0.711 ms - {}
 2025-05-11 12:16:56 [INFO]: GET /api-docs/favicon-32x32.png 304 - - 0.349 ms - {}
+2025-05-11 12:47:18 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:18 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:18 [INFO]: GET /api-docs/ 200 3106 - 1.021 ms - {}
+2025-05-11 12:47:19 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:19 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:19 [INFO]: GET /api-docs/swagger-ui.css 304 - - 1.019 ms - {}
+2025-05-11 12:47:19 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:19 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:19 [INFO]: GET /api-docs/swagger-ui-standalone-preset.js 304 - - 1.376 ms - {}
+2025-05-11 12:47:20 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:20 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:20 [INFO]: GET /api-docs/swagger-ui-standalone-preset.js 304 - - 2.961 ms - {}
+2025-05-11 12:47:20 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:20 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:20 [INFO]: GET /api-docs/favicon-32x32.png 304 - - 1.374 ms - {}
+2025-05-11 12:47:20 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:20 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:20 [INFO]: GET /api-docs/favicon-32x32.png 304 - - 0.794 ms - {}
+2025-05-11 12:47:49 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:49 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:49 [INFO]: GET /api-docs/ 304 - - 0.881 ms - {}
+2025-05-11 12:47:50 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:50 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:50 [INFO]: GET /api-docs/swagger-ui-standalone-preset.js 304 - - 0.882 ms - {}
+2025-05-11 12:47:50 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:50 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:50 [INFO]: GET /api-docs/swagger-ui.css 304 - - 0.916 ms - {}
+2025-05-11 12:47:50 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:50 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:50 [INFO]: GET /api-docs/swagger-ui-standalone-preset.js 304 - - 0.801 ms - {}
+2025-05-11 12:47:50 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:50 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:51 [INFO]: GET /api-docs/swagger-ui-bundle.js 200 1468326 - 2.530 ms - {}
+2025-05-11 12:47:51 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:51 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:51 [INFO]: GET /api-docs/favicon-16x16.png 200 665 - 1.673 ms - {}
+2025-05-11 12:47:52 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:52 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:52 [INFO]: GET /api-docs/favicon-32x32.png 200 628 - 1.228 ms - {}
+2025-05-11 12:47:55 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:55 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:55 [INFO]: GET /api-docs/ 304 - - 0.916 ms - {}
+2025-05-11 12:47:56 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:56 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:56 [INFO]: GET /api-docs/swagger-ui-bundle.js 200 1468326 - 2.976 ms - {}
+2025-05-11 12:47:57 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:57 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:57 [INFO]: GET /api-docs/swagger-ui-standalone-preset.js 304 - - 2.401 ms - {}
+2025-05-11 12:47:57 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:57 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:57 [INFO]: GET /api-docs/favicon-32x32.png 304 - - 1.007 ms - {}
+2025-05-11 12:47:57 [INFO]: Server running in development mode on port 3001
+2025-05-11 12:47:57 [INFO]: API Documentation available at http://localhost:3001/api-docs
+2025-05-11 12:47:57 [INFO]: GET /api-docs/favicon-32x32.png 304 - - 0.705 ms - {}
+2025-05-11 12:51:00 [INFO]: GET / 200 110 - 0.907 ms - {}
+2025-05-11 12:51:08 [INFO]: GET /api-docs/ 200 3106 - 0.837 ms - {}
+2025-05-11 12:51:10 [INFO]: GET /api-docs/swagger-ui-init.js 200 27755 - 0.658 ms - {}
+2025-05-11 12:51:10 [INFO]: GET /api-docs/swagger-ui.css 200 154986 - 3.734 ms - {}
+2025-05-11 12:51:10 [INFO]: GET /api-docs/swagger-ui-bundle.js 304 - - 2.238 ms - {}
+2025-05-11 12:51:10 [INFO]: GET /api-docs/swagger-ui-standalone-preset.js 200 229223 - 4.857 ms - {}
+2025-05-11 12:51:10 [INFO]: GET /api-docs/favicon-32x32.png 304 - - 0.913 ms - {}

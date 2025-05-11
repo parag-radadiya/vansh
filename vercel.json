@@ -5,5 +5,22 @@
       "src": "api/index.js",
       "use": "@vercel/node"
     }
-  ]
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.js",
+      "headers": {
+        "cache-control": "s-maxage=0"
+      }
+    }
+  ],
+  "env": {
+    "VERCEL": "1",
+    "NODE_ENV": "production"
+  },
+  "regions": ["cdg1", "lhr1", "iad1"],
+  "github": {
+    "silent": true
+  }
 }
