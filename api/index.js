@@ -21,7 +21,19 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 const app = express();
 
 // Security headers
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", "data:"],
+        connectSrc: ["'self'"]
+      }
+    }
+  })
+);
 
 // Enable CORS with appropriate options
 const corsOptions = {
@@ -60,6 +72,7 @@ app.use(requestLogger);
 
 // Secure API docs in production with a simple API key
 const secureSwaggerInProduction = (req, res, next) => {
+  // Only apply this check in production environment
   if (process.env.NODE_ENV === 'production' && process.env.DOCS_API_KEY) {
     const apiKey = req.query.apiKey || req.headers['x-api-key'];
     if (apiKey !== process.env.DOCS_API_KEY) {
@@ -74,7 +87,15 @@ const secureSwaggerInProduction = (req, res, next) => {
 
 // API documentation (disable in production if not needed)
 if (process.env.NODE_ENV !== 'production' || process.env.ENABLE_DOCS === 'true') {
-  app.use('/api-docs', secureSwaggerInProduction, swaggerUi.serve, swaggerUi.setup(specs));
+  const swaggerOptions = {
+    explorer: true,
+    swaggerOptions: {
+      displayRequestDuration: true,
+      docExpansion: 'none',
+      persistAuthorization: true,
+    }
+  };
+  app.use('/api-docs', secureSwaggerInProduction, swaggerUi.serve, swaggerUi.setup(specs, swaggerOptions));
 }
 
 // API Routes

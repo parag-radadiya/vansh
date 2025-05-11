@@ -1,5 +1,6 @@
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const path = require('path');
 
 // Determine the server URL based on environment
 const getServerUrl = () => {
@@ -48,7 +49,11 @@ const options = {
       }
     ]
   },
-  apis: ['./api/routes/*.js', './api/models/*.js'],
+  // Use absolute paths to ensure Vercel can find the files
+  apis: [
+    path.join(process.cwd(), 'api/routes/*.js'),
+    path.join(process.cwd(), 'api/models/*.js')
+  ],
 };
 
 const specs = swaggerJsDoc(options);
