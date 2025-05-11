@@ -74,8 +74,6 @@ router.post('/', contactController.createContact);
  *   get:
  *     summary: Get all contact submissions
  *     tags: [Contact]
- *     security:
- *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -126,12 +124,10 @@ router.post('/', contactController.createContact);
  *                       type: integer
  *                     pages:
  *                       type: integer
- *       401:
- *         description: Not authenticated
  *       500:
  *         description: Server error
  */
-router.get('/', auth, contactController.getAllContacts);
+router.get('/', contactController.getAllContacts);
 
 /**
  * @swagger
@@ -139,8 +135,6 @@ router.get('/', auth, contactController.getAllContacts);
  *   get:
  *     summary: Get a contact by ID
  *     tags: [Contact]
- *     security:
- *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -161,14 +155,12 @@ router.get('/', auth, contactController.getAllContacts);
  *                   example: true
  *                 data:
  *                   $ref: '#/components/schemas/Contact'
- *       401:
- *         description: Not authenticated
  *       404:
  *         description: Contact not found
  *       500:
  *         description: Server error
  */
-router.get('/:id', auth, contactController.getContactById);
+router.get('/:id', contactController.getContactById);
 
 /**
  * @swagger

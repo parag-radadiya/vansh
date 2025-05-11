@@ -83,8 +83,6 @@ router.post('/', loanApplicationController.createApplication);
  *   get:
  *     summary: Get all loan applications
  *     tags: [Loan Applications]
- *     security:
- *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -150,12 +148,10 @@ router.post('/', loanApplicationController.createApplication);
  *                       type: integer
  *                     pages:
  *                       type: integer
- *       401:
- *         description: Not authenticated
  *       500:
  *         description: Server error
  */
-router.get('/', auth, loanApplicationController.getAllApplications);
+router.get('/', loanApplicationController.getAllApplications);
 
 /**
  * @swagger
@@ -163,8 +159,6 @@ router.get('/', auth, loanApplicationController.getAllApplications);
  *   get:
  *     summary: Get a loan application by ID
  *     tags: [Loan Applications]
- *     security:
- *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -185,14 +179,12 @@ router.get('/', auth, loanApplicationController.getAllApplications);
  *                   example: true
  *                 data:
  *                   $ref: '#/components/schemas/LoanApplication'
- *       401:
- *         description: Not authenticated
  *       404:
  *         description: Application not found
  *       500:
  *         description: Server error
  */
-router.get('/:id', auth, loanApplicationController.getApplicationById);
+router.get('/:id', loanApplicationController.getApplicationById);
 
 /**
  * @swagger

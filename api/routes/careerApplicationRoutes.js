@@ -75,8 +75,6 @@ router.post('/', upload.single('resume'), careerApplicationController.createAppl
  *   get:
  *     summary: Get all career applications
  *     tags: [Career Applications]
- *     security:
- *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -132,12 +130,10 @@ router.post('/', upload.single('resume'), careerApplicationController.createAppl
  *                       type: integer
  *                     pages:
  *                       type: integer
- *       401:
- *         description: Not authenticated
  *       500:
  *         description: Server error
  */
-router.get('/', auth, careerApplicationController.getAllApplications);
+router.get('/', careerApplicationController.getAllApplications);
 
 /**
  * @swagger
@@ -145,8 +141,6 @@ router.get('/', auth, careerApplicationController.getAllApplications);
  *   get:
  *     summary: Get a career application by ID
  *     tags: [Career Applications]
- *     security:
- *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -167,14 +161,12 @@ router.get('/', auth, careerApplicationController.getAllApplications);
  *                   example: true
  *                 data:
  *                   $ref: '#/components/schemas/CareerApplication'
- *       401:
- *         description: Not authenticated
  *       404:
  *         description: Application not found
  *       500:
  *         description: Server error
  */
-router.get('/:id', auth, careerApplicationController.getApplicationById);
+router.get('/:id', careerApplicationController.getApplicationById);
 
 /**
  * @swagger

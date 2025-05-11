@@ -42,8 +42,6 @@ router.get('/active', termsController.getActiveTerms);
  *   get:
  *     summary: Get all terms and conditions versions
  *     tags: [Terms]
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: List of all terms versions
@@ -59,12 +57,10 @@ router.get('/active', termsController.getActiveTerms);
  *                   type: array
  *                   items:
  *                     $ref: '#/components/schemas/Terms'
- *       401:
- *         description: Not authenticated
  *       500:
  *         description: Server error
  */
-router.get('/', auth, termsController.getAllTermsVersions);
+router.get('/', termsController.getAllTermsVersions);
 
 /**
  * @swagger

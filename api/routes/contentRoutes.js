@@ -92,9 +92,22 @@ router.post(
  *   get:
  *     summary: Get all content entries
  *     tags: [Content]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Page number
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Items per page
  *     responses:
  *       200:
- *         description: List of all content entries
+ *         description: Successfully retrieved content entries
  *         content:
  *           application/json:
  *             schema:
@@ -107,6 +120,19 @@ router.post(
  *                   type: array
  *                   items:
  *                     $ref: '#/components/schemas/Content'
+ *                 pagination:
+ *                   type: object
+ *                   properties:
+ *                     total:
+ *                       type: integer
+ *                     page:
+ *                       type: integer
+ *                     limit:
+ *                       type: integer
+ *                     pages:
+ *                       type: integer
+ *       500:
+ *         description: Server error
  */
 router.get('/', contentController.getAllContent);
 
@@ -122,10 +148,10 @@ router.get('/', contentController.getAllContent);
  *         schema:
  *           type: string
  *         required: true
- *         description: ID of the content to get
+ *         description: ID of the content to retrieve
  *     responses:
  *       200:
- *         description: Content entry found
+ *         description: Content found
  *         content:
  *           application/json:
  *             schema:

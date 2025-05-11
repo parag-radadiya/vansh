@@ -16,8 +16,6 @@ const auth = require('../middleware/auth');
  *   get:
  *     summary: Get all blogs (admin)
  *     tags: [Blogs]
- *     security:
- *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -57,12 +55,10 @@ const auth = require('../middleware/auth');
  *                       type: integer
  *                     pages:
  *                       type: integer
- *       401:
- *         description: Not authenticated
  *       500:
  *         description: Server error
  */
-router.get('/', auth, blogController.getAllBlogs);
+router.get('/', blogController.getAllBlogs);
 
 /**
  * @swagger

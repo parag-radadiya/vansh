@@ -16,8 +16,6 @@ const auth = require('../middleware/auth');
  *   get:
  *     summary: Get all addresses for the authenticated user
  *     tags: [Addresses]
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Successfully retrieved addresses
@@ -33,12 +31,10 @@ const auth = require('../middleware/auth');
  *                   type: array
  *                   items:
  *                     $ref: '#/components/schemas/Address'
- *       401:
- *         description: Not authenticated
  *       500:
  *         description: Server error
  */
-router.get('/', auth, addressController.getUserAddresses);
+router.get('/', addressController.getUserAddresses);
 
 /**
  * @swagger
@@ -46,8 +42,6 @@ router.get('/', auth, addressController.getUserAddresses);
  *   get:
  *     summary: Get default address for the authenticated user
  *     tags: [Addresses]
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Successfully retrieved default address
@@ -61,14 +55,12 @@ router.get('/', auth, addressController.getUserAddresses);
  *                   example: true
  *                 data:
  *                   $ref: '#/components/schemas/Address'
- *       401:
- *         description: Not authenticated
  *       404:
  *         description: No address found
  *       500:
  *         description: Server error
  */
-router.get('/default', auth, addressController.getDefaultAddress);
+router.get('/default', addressController.getDefaultAddress);
 
 /**
  * @swagger
@@ -118,8 +110,6 @@ router.get('/search', addressController.searchAddresses);
  *   get:
  *     summary: Get an address by ID
  *     tags: [Addresses]
- *     security:
- *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -140,14 +130,12 @@ router.get('/search', addressController.searchAddresses);
  *                   example: true
  *                 data:
  *                   $ref: '#/components/schemas/Address'
- *       401:
- *         description: Not authenticated
  *       404:
  *         description: Address not found
  *       500:
  *         description: Server error
  */
-router.get('/:id', auth, addressController.getAddressById);
+router.get('/:id', addressController.getAddressById);
 
 /**
  * @swagger

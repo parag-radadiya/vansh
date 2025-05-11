@@ -262,7 +262,7 @@ router.post('/logout', userController.logout);
  *       401:
  *         description: Unauthorized - Invalid or expired token
  */
-router.get('/profile', authenticate, userController.getProfile);
+router.get('/profile', userController.getProfile);
 
 /**
  * @swagger
