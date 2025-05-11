@@ -58,9 +58,23 @@ app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 // Request logging middleware
 app.use(requestLogger);
 
+// Secure API docs in production with a simple API key
+const secureSwaggerInProduction = (req, res, next) => {
+  if (process.env.NODE_ENV === 'production' && process.env.DOCS_API_KEY) {
+    const apiKey = req.query.apiKey || req.headers['x-api-key'];
+    if (apiKey !== process.env.DOCS_API_KEY) {
+      return res.status(401).json({ 
+        error: 'Unauthorized', 
+        message: 'Invalid or missing API key for documentation access' 
+      });
+    }
+  }
+  next();
+};
+
 // API documentation (disable in production if not needed)
 if (process.env.NODE_ENV !== 'production' || process.env.ENABLE_DOCS === 'true') {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+  app.use('/api-docs', secureSwaggerInProduction, swaggerUi.serve, swaggerUi.setup(specs));
 }
 
 // API Routes
@@ -77,9 +91,9 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Root route redirect to docs in development or welcome in production
+// Root route redirect to docs in development or when docs are enabled
 app.get('/', (req, res) => {
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production' || process.env.ENABLE_DOCS === 'true') {
     res.redirect('/api-docs');
   } else {
     res.status(200).json({ 
