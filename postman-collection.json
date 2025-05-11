@@ -1,0 +1,6892 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Vansh API Documentation",
+    "version": "1.0.0",
+    "description": "REST API built with Express and MongoDB deployed on Vercel",
+    "contact": {
+      "name": "API Support",
+      "email": "support@example.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Development server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Address": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "The auto-generated ID of the address"
+          },
+          "userId": {
+            "type": "string",
+            "description": "The ID of the user who owns this address"
+          },
+          "addressType": {
+            "type": "string",
+            "enum": [
+              "home",
+              "office",
+              "business",
+              "other"
+            ],
+            "description": "Type of address"
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "First line of address (building, street)"
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "Second line of address (apartment, suite, etc.)"
+          },
+          "landmark": {
+            "type": "string",
+            "description": "A nearby landmark for easier identification"
+          },
+          "city": {
+            "type": "string",
+            "description": "City/Town name"
+          },
+          "district": {
+            "type": "string",
+            "description": "District/County name"
+          },
+          "state": {
+            "type": "string",
+            "description": "State/Province name"
+          },
+          "pincode": {
+            "type": "string",
+            "description": "Postal/ZIP code"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country name"
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "Whether this is the default address for the user"
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Geographic latitude coordinate"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Geographic longitude coordinate"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the address was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the address was last updated"
+          }
+        },
+        "example": {
+          "_id": "60d21b4667d0d8992e610c85",
+          "userId": "60d21b1c67d0d8992e610c84",
+          "addressType": "home",
+          "addressLine1": "123 Main Street",
+          "addressLine2": "Apartment 4B",
+          "landmark": "Near City Park",
+          "city": "Ahmedabad",
+          "district": "Ahmedabad",
+          "state": "Gujarat",
+          "pincode": "380015",
+          "country": "India",
+          "isDefault": true,
+          "latitude": 23.0225,
+          "longitude": 72.5714,
+          "createdAt": "2021-06-22T12:43:34.913Z",
+          "updatedAt": "2021-06-22T12:43:34.913Z"
+        }
+      },
+      "Blog": {
+        "type": "object",
+        "required": [
+          "title",
+          "category",
+          "description"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of the blog post"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "publicId": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Array of images for the blog post"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of the blog post"
+          },
+          "description": {
+            "type": "string",
+            "description": "Content of the blog post"
+          },
+          "publishFlag": {
+            "type": "boolean",
+            "description": "Whether the blog post is published or draft"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tags associated with the blog post"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Reference to the user who created this blog post"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the blog post was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the blog post was last updated"
+          }
+        },
+        "example": {
+          "title": "Introduction to Modern Web Development",
+          "images": [
+            {
+              "url": "https://res.cloudinary.com/demo/image/upload/v1234567890/blogs/web-dev1.jpg",
+              "publicId": "blogs/web-dev1"
+            },
+            {
+              "url": "https://res.cloudinary.com/demo/image/upload/v1234567890/blogs/web-dev2.jpg",
+              "publicId": "blogs/web-dev2"
+            }
+          ],
+          "category": "Technology",
+          "description": "This article discusses modern web development techniques and best practices...",
+          "publishFlag": true,
+          "tags": [
+            "web development",
+            "javascript",
+            "react"
+          ],
+          "createdBy": "60d0fe4f5311236168a109ca",
+          "createdAt": "2025-05-11T12:00:00.000Z",
+          "updatedAt": "2025-05-11T12:00:00.000Z"
+        }
+      },
+      "CareerApplication": {
+        "type": "object",
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "phoneNumber",
+          "role",
+          "resume"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "First name of the applicant"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Last name of the applicant"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address of the applicant"
+          },
+          "state": {
+            "type": "string",
+            "description": "State of residence"
+          },
+          "city": {
+            "type": "string",
+            "description": "City of residence"
+          },
+          "role": {
+            "type": "string",
+            "description": "Job role the applicant is applying for"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "Phone number of the applicant"
+          },
+          "resume": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "publicId": {
+                "type": "string"
+              }
+            },
+            "description": "Resume document of the applicant"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "reviewed",
+              "shortlisted",
+              "rejected"
+            ],
+            "description": "Status of the application"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Administrative notes about the application"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the application was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the application was last updated"
+          }
+        },
+        "example": {
+          "firstName": "John",
+          "lastName": "Doe",
+          "email": "john.doe@example.com",
+          "state": "Gujarat",
+          "city": "Ahmedabad",
+          "role": "Full Stack Developer",
+          "phoneNumber": "9876543210",
+          "resume": {
+            "url": "https://res.cloudinary.com/demo/raw/upload/v1234567890/resumes/johndoe-resume.pdf",
+            "publicId": "resumes/johndoe-resume"
+          },
+          "status": "pending",
+          "createdAt": "2025-05-11T12:00:00.000Z",
+          "updatedAt": "2025-05-11T12:00:00.000Z"
+        }
+      },
+      "CareerManagement": {
+        "type": "object",
+        "required": [
+          "category",
+          "role",
+          "description"
+        ],
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Category of the career opportunity"
+          },
+          "role": {
+            "type": "string",
+            "description": "Job role or position title"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the job opportunity"
+          },
+          "image": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "publicId": {
+                "type": "string"
+              }
+            },
+            "description": "Image for the career opportunity"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Reference to the user who created this career opportunity"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the career opportunity was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the career opportunity was last updated"
+          }
+        },
+        "example": {
+          "category": "Engineering",
+          "role": "Senior Software Developer",
+          "description": "We are looking for an experienced software developer with expertise in React and Node.js.",
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/v1234567890/careers/images/developer.jpg",
+            "publicId": "careers/images/developer"
+          },
+          "createdBy": "60d0fe4f5311236168a109ca",
+          "createdAt": "2025-05-11T12:00:00.000Z",
+          "updatedAt": "2025-05-11T12:00:00.000Z"
+        }
+      },
+      "Contact": {
+        "type": "object",
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "phoneNumber",
+          "message"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "First name of the person"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Last name of the person"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address of the person"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "Phone number of the person"
+          },
+          "requestMessage": {
+            "type": "string",
+            "description": "Type of request or subject"
+          },
+          "pinCode": {
+            "type": "string",
+            "description": "PIN code / ZIP code"
+          },
+          "state": {
+            "type": "string",
+            "description": "State"
+          },
+          "city": {
+            "type": "string",
+            "description": "City"
+          },
+          "message": {
+            "type": "string",
+            "description": "Detailed message from the person"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "inProgress",
+              "resolved"
+            ],
+            "description": "Status of the contact request"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the contact request was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the contact request was last updated"
+          }
+        },
+        "example": {
+          "firstName": "John",
+          "lastName": "Doe",
+          "email": "john.doe@example.com",
+          "phoneNumber": "9876543210",
+          "requestMessage": "Product Inquiry",
+          "pinCode": "380015",
+          "state": "Gujarat",
+          "city": "Ahmedabad",
+          "message": "I would like to know more about your services.",
+          "status": "pending",
+          "createdAt": "2025-05-11T12:00:00.000Z",
+          "updatedAt": "2025-05-11T12:00:00.000Z"
+        }
+      },
+      "Content": {
+        "type": "object",
+        "required": [
+          "title",
+          "description"
+        ],
+        "properties": {
+          "banner": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "publicId": {
+                "type": "string"
+              }
+            },
+            "description": "Banner image for the content"
+          },
+          "image": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "publicId": {
+                "type": "string"
+              }
+            },
+            "description": "Main image for the content"
+          },
+          "video": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "publicId": {
+                "type": "string"
+              }
+            },
+            "description": "Video for the content"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the content"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the content"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Reference to the user who created this content"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the content was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the content was last updated"
+          }
+        },
+        "example": {
+          "title": "Sample Content",
+          "description": "This is a detailed description of the sample content",
+          "banner": {
+            "url": "https://res.cloudinary.com/parag_demo/image/upload/v1234567890/content/banners/banner.jpg",
+            "publicId": "content/banners/banner"
+          },
+          "image": {
+            "url": "https://res.cloudinary.com/parag_demo/image/upload/v1234567890/content/images/image.jpg",
+            "publicId": "content/images/image"
+          },
+          "video": {
+            "url": "https://res.cloudinary.com/parag_demo/video/upload/v1234567890/content/videos/video.mp4",
+            "publicId": "content/videos/video"
+          },
+          "createdBy": "60d0fe4f5311236168a109ca",
+          "createdAt": "2025-05-11T12:00:00.000Z",
+          "updatedAt": "2025-05-11T12:00:00.000Z"
+        }
+      },
+      "Expert": {
+        "type": "object",
+        "required": [
+          "name",
+          "role",
+          "description"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the expert"
+          },
+          "role": {
+            "type": "string",
+            "description": "Role or position of the expert"
+          },
+          "image": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "publicId": {
+                "type": "string"
+              }
+            },
+            "description": "Image of the expert"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the expert"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Reference to the user who created this expert"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the expert was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the expert was last updated"
+          }
+        },
+        "example": {
+          "name": "John Smith",
+          "role": "Senior Technology Advisor",
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/v1234567890/experts/john.jpg",
+            "publicId": "experts/john"
+          },
+          "description": "John is a technology expert with over 15 years of experience in software development and consulting.",
+          "createdBy": "60d0fe4f5311236168a109ca",
+          "createdAt": "2025-05-11T12:00:00.000Z",
+          "updatedAt": "2025-05-11T12:00:00.000Z"
+        }
+      },
+      "Faq": {
+        "type": "object",
+        "required": [
+          "question"
+        ],
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "Question text"
+          },
+          "ans": {
+            "type": "string",
+            "description": "Answer text"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "Active status of the FAQ"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Reference to the user who created this FAQ"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the FAQ was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the FAQ was last updated"
+          }
+        },
+        "example": {
+          "question": "How do I reset my password?",
+          "ans": "You can reset your password by clicking on the 'Forgot Password' link on the login page.",
+          "status": true,
+          "createdBy": "60d0fe4f5311236168a109ca",
+          "createdAt": "2025-05-11T12:00:00.000Z",
+          "updatedAt": "2025-05-11T12:00:00.000Z"
+        }
+      },
+      "LoanApplication": {
+        "type": "object",
+        "required": [
+          "loanType",
+          "fullName",
+          "email",
+          "pincode",
+          "loanAmount",
+          "phoneNumber",
+          "businessType",
+          "securityType"
+        ],
+        "properties": {
+          "loanType": {
+            "type": "string",
+            "description": "Type of loan being requested"
+          },
+          "fullName": {
+            "type": "string",
+            "description": "Full name of the applicant"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address of the applicant"
+          },
+          "pincode": {
+            "type": "string",
+            "description": "Postal/ZIP code of the applicant"
+          },
+          "loanAmount": {
+            "type": "number",
+            "description": "Requested loan amount"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "Phone number of the applicant"
+          },
+          "businessType": {
+            "type": "string",
+            "description": "Type of business or employment"
+          },
+          "securityType": {
+            "type": "string",
+            "description": "Type of security/collateral offered"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "reviewing",
+              "approved",
+              "rejected"
+            ],
+            "description": "Status of the loan application"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Administrative notes about the application"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the application was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the application was last updated"
+          }
+        },
+        "example": {
+          "loanType": "Business Loan",
+          "fullName": "John Doe",
+          "email": "john.doe@example.com",
+          "pincode": "380015",
+          "loanAmount": 500000,
+          "phoneNumber": "9876543210",
+          "businessType": "Retail",
+          "securityType": "Property",
+          "status": "pending",
+          "notes": "",
+          "createdAt": "2025-05-11T12:00:00.000Z",
+          "updatedAt": "2025-05-11T12:00:00.000Z"
+        }
+      },
+      "OTP": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email address associated with this OTP"
+          },
+          "otp": {
+            "type": "string",
+            "description": "One-time password code"
+          },
+          "purpose": {
+            "type": "string",
+            "description": "Purpose of the OTP (verification, password reset)"
+          },
+          "expires": {
+            "type": "string",
+            "format": "date-time",
+            "description": "OTP expiration timestamp"
+          }
+        }
+      },
+      "Plan": {
+        "type": "object",
+        "required": [
+          "price",
+          "description",
+          "features"
+        ],
+        "properties": {
+          "price": {
+            "type": "number",
+            "description": "Price of the plan"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of features included in the plan"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the plan"
+          },
+          "showHideFlag": {
+            "type": "boolean",
+            "description": "Whether the plan should be visible"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Reference to the user who created this plan"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the plan was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the plan was last updated"
+          }
+        },
+        "example": {
+          "price": 99.99,
+          "features": [
+            "Feature 1",
+            "Feature 2",
+            "Feature 3"
+          ],
+          "description": "Premium plan with all the features you need",
+          "showHideFlag": true,
+          "createdBy": "60d0fe4f5311236168a109ca",
+          "createdAt": "2025-05-11T12:00:00.000Z",
+          "updatedAt": "2025-05-11T12:00:00.000Z"
+        }
+      },
+      "Service": {
+        "type": "object",
+        "required": [
+          "title",
+          "description",
+          "category"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of the service"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the service"
+          },
+          "icon": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "publicId": {
+                "type": "string"
+              }
+            },
+            "description": "SVG icon for the service"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of the service"
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of services offered"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Reference to the user who created this service"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the service was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the service was last updated"
+          }
+        },
+        "example": {
+          "title": "Web Development",
+          "description": "Professional web development services for businesses",
+          "icon": {
+            "url": "https://res.cloudinary.com/demo/image/upload/v1234567890/services/icons/web.svg",
+            "publicId": "services/icons/web"
+          },
+          "category": "IT Services",
+          "services": [
+            "Frontend Development",
+            "Backend Development",
+            "Full-stack Solutions"
+          ],
+          "createdBy": "60d0fe4f5311236168a109ca",
+          "createdAt": "2025-05-11T12:00:00.000Z",
+          "updatedAt": "2025-05-11T12:00:00.000Z"
+        }
+      },
+      "SuccessStory": {
+        "type": "object",
+        "required": [
+          "title",
+          "clientName",
+          "content"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of the success story"
+          },
+          "image": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "publicId": {
+                "type": "string"
+              }
+            },
+            "description": "Image related to the success story"
+          },
+          "clientName": {
+            "type": "string",
+            "description": "Name of the client or company"
+          },
+          "content": {
+            "type": "string",
+            "description": "Detailed content of the success story"
+          },
+          "showHideFlag": {
+            "type": "boolean",
+            "description": "Whether to display the story or not"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Reference to the user who created this success story"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the success story was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the success story was last updated"
+          }
+        },
+        "example": {
+          "title": "Company X Digital Transformation",
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/v1234567890/stories/company-x.jpg",
+            "publicId": "stories/company-x"
+          },
+          "clientName": "Company X",
+          "content": "This is the detailed story of how Company X transformed their digital landscape...",
+          "showHideFlag": true,
+          "createdBy": "60d0fe4f5311236168a109ca",
+          "createdAt": "2025-05-11T12:00:00.000Z",
+          "updatedAt": "2025-05-11T12:00:00.000Z"
+        }
+      },
+      "Terms": {
+        "type": "object",
+        "required": [
+          "title",
+          "content",
+          "version"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "The auto-generated ID of the terms"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the terms and conditions"
+          },
+          "content": {
+            "type": "string",
+            "description": "Full content of the terms in HTML format"
+          },
+          "version": {
+            "type": "string",
+            "description": "Version number of the terms"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Whether this version is currently active",
+            "default": false
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date when these terms become effective"
+          },
+          "updatedBy": {
+            "type": "string",
+            "description": "ID of the user who last updated the terms"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date the terms were created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date the terms were last updated"
+          }
+        },
+        "example": {
+          "_id": "60d21b4967d0d8992e610c85",
+          "title": "Terms of Service",
+          "content": "<h1>Terms of Service</h1><p>These are the terms and conditions...</p>",
+          "version": 1,
+          "isActive": true,
+          "effectiveDate": "2023-01-01T00:00:00.000Z",
+          "updatedBy": "60d21b4967d0d8992e610c85",
+          "createdAt": "2023-01-01T00:00:00.000Z",
+          "updatedAt": "2023-01-01T00:00:00.000Z"
+        }
+      },
+      "Testimonial": {
+        "type": "object",
+        "required": [
+          "name",
+          "feedback"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the person giving the testimonial"
+          },
+          "image": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "publicId": {
+                "type": "string"
+              }
+            },
+            "description": "Image of the person"
+          },
+          "feedback": {
+            "type": "string",
+            "description": "Testimonial feedback text"
+          },
+          "stars": {
+            "type": "number",
+            "description": "Optional rating (1-5 stars)"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Reference to the user who created this testimonial"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the testimonial was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the testimonial was last updated"
+          }
+        },
+        "example": {
+          "name": "John Doe",
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/v1234567890/testimonials/john.jpg",
+            "publicId": "testimonials/john"
+          },
+          "feedback": "Great service! Highly recommended.",
+          "stars": 5,
+          "createdBy": "60d0fe4f5311236168a109ca",
+          "createdAt": "2025-05-11T12:00:00.000Z",
+          "updatedAt": "2025-05-11T12:00:00.000Z"
+        }
+      },
+      "Token": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "JWT refresh token"
+          },
+          "user": {
+            "type": "string",
+            "description": "ID of the user this token belongs to"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "refresh"
+            ],
+            "description": "Type of token"
+          },
+          "expires": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Token expiration date"
+          },
+          "blacklisted": {
+            "type": "boolean",
+            "description": "Whether the token has been blacklisted"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's full name"
+          },
+          "username": {
+            "type": "string",
+            "description": "User's unique username"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User email address"
+          },
+          "mobileNumber": {
+            "type": "string",
+            "description": "User's Indian mobile number"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "description": "User password (hashed)"
+          },
+          "isEmailVerified": {
+            "type": "boolean",
+            "description": "Whether the user's email has been verified"
+          },
+          "isMobileVerified": {
+            "type": "boolean",
+            "description": "Whether the user's mobile has been verified"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the user was added"
+          }
+        },
+        "example": {
+          "name": "John Doe",
+          "username": "johndoe",
+          "email": "user@example.com",
+          "mobileNumber": "9876543210",
+          "password": "password123",
+          "isEmailVerified": false,
+          "isMobileVerified": false,
+          "createdAt": "2025-05-11T12:00:00.000Z"
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/addresses": {
+      "get": {
+        "summary": "Get all addresses for the authenticated user",
+        "tags": [
+          "Addresses"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved addresses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Address"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new address",
+        "tags": [
+          "Addresses"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "addressLine1",
+                  "city",
+                  "state",
+                  "pincode"
+                ],
+                "properties": {
+                  "addressType": {
+                    "type": "string",
+                    "enum": [
+                      "home",
+                      "office",
+                      "business",
+                      "other"
+                    ],
+                    "example": "home"
+                  },
+                  "addressLine1": {
+                    "type": "string",
+                    "example": "123 Main Street"
+                  },
+                  "addressLine2": {
+                    "type": "string",
+                    "example": "Apartment 4B"
+                  },
+                  "landmark": {
+                    "type": "string",
+                    "example": "Near City Park"
+                  },
+                  "city": {
+                    "type": "string",
+                    "example": "Ahmedabad"
+                  },
+                  "district": {
+                    "type": "string",
+                    "example": "Ahmedabad"
+                  },
+                  "state": {
+                    "type": "string",
+                    "example": "Gujarat"
+                  },
+                  "pincode": {
+                    "type": "string",
+                    "example": "380015"
+                  },
+                  "country": {
+                    "type": "string",
+                    "example": "India"
+                  },
+                  "isDefault": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "example": 23.0225
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "example": 72.5714
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Address created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Address"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/addresses/default": {
+      "get": {
+        "summary": "Get default address for the authenticated user",
+        "tags": [
+          "Addresses"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved default address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Address"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "No address found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/addresses/search": {
+      "get": {
+        "summary": "Search addresses by criteria",
+        "tags": [
+          "Addresses"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pincode",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by pincode"
+          },
+          {
+            "in": "query",
+            "name": "city",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by city"
+          },
+          {
+            "in": "query",
+            "name": "state",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by state"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved addresses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Address"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/addresses/{id}": {
+      "get": {
+        "summary": "Get an address by ID",
+        "tags": [
+          "Addresses"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Address ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Address"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Address not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an address",
+        "tags": [
+          "Addresses"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Address ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "addressType": {
+                    "type": "string",
+                    "enum": [
+                      "home",
+                      "office",
+                      "business",
+                      "other"
+                    ]
+                  },
+                  "addressLine1": {
+                    "type": "string"
+                  },
+                  "addressLine2": {
+                    "type": "string"
+                  },
+                  "landmark": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "district": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "pincode": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "isDefault": {
+                    "type": "boolean"
+                  },
+                  "latitude": {
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Address updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Address"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Address not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an address",
+        "tags": [
+          "Addresses"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Address ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Address deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Address deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Address not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/addresses/{id}/default": {
+      "patch": {
+        "summary": "Set an address as default",
+        "tags": [
+          "Addresses"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Address ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Address set as default successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Address"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Address not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/blogs": {
+      "get": {
+        "summary": "Get all blogs (admin)",
+        "tags": [
+          "Blogs"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            },
+            "description": "Items per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved blogs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Blog"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "total": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "type": "integer"
+                        },
+                        "pages": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new blog",
+        "tags": [
+          "Blogs"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "category",
+                  "description"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "publishFlag": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "tags": {
+                    "type": "string",
+                    "description": "Comma-separated list of tags"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Blog created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Blog"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/blogs/published": {
+      "get": {
+        "summary": "Get published blogs",
+        "tags": [
+          "Blogs"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            },
+            "description": "Items per page"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by category"
+          },
+          {
+            "in": "query",
+            "name": "tag",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by tag"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved published blogs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Blog"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "total": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "type": "integer"
+                        },
+                        "pages": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/blogs/categories": {
+      "get": {
+        "summary": "Get blog categories with counts",
+        "tags": [
+          "Blogs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/blogs/tags": {
+      "get": {
+        "summary": "Get blog tags with counts",
+        "tags": [
+          "Blogs"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 20
+            },
+            "description": "Maximum number of tags to return"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved tags",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tag": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/blogs/{id}": {
+      "get": {
+        "summary": "Get a blog by ID",
+        "tags": [
+          "Blogs"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the blog to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "incrementViews",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            },
+            "description": "Whether to increment view count"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blog found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Blog"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Blog not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a blog",
+        "tags": [
+          "Blogs"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the blog to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "publishFlag": {
+                    "type": "boolean"
+                  },
+                  "tags": {
+                    "type": "string",
+                    "description": "Comma-separated list of tags"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Blog updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Blog"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "Blog not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a blog",
+        "tags": [
+          "Blogs"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the blog to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blog deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Blog deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "Blog not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/blogs/{id}/toggle-publish": {
+      "patch": {
+        "summary": "Toggle publish status of a blog",
+        "tags": [
+          "Blogs"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the blog to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blog status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Blog"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Blog published successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "Blog not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/career-applications": {
+      "post": {
+        "summary": "Submit a career application",
+        "tags": [
+          "Career Applications"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "email",
+                  "phoneNumber",
+                  "role",
+                  "resume"
+                ],
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "type": "string"
+                  },
+                  "resume": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Resume document (PDF, DOC, DOCX)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Application submitted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CareerApplication"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data or missing required fields"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all career applications",
+        "tags": [
+          "Career Applications"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            },
+            "description": "Items per page"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "reviewed",
+                "shortlisted",
+                "rejected"
+              ]
+            },
+            "description": "Filter by status"
+          },
+          {
+            "in": "query",
+            "name": "role",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by job role"
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search term for name, email, etc."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved applications",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CareerApplication"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "total": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "type": "integer"
+                        },
+                        "pages": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/career-applications/{id}": {
+      "get": {
+        "summary": "Get a career application by ID",
+        "tags": [
+          "Career Applications"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the application to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CareerApplication"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Application not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a career application",
+        "tags": [
+          "Career Applications"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the application to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Application deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Application not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/career-applications/{id}/status": {
+      "patch": {
+        "summary": "Update application status",
+        "tags": [
+          "Career Applications"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the application",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pending",
+                      "reviewed",
+                      "shortlisted",
+                      "rejected"
+                    ]
+                  },
+                  "notes": {
+                    "type": "string",
+                    "description": "Optional notes about the status change"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Application status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CareerApplication"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Application not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/careers": {
+      "get": {
+        "summary": "Get all career opportunities",
+        "tags": [
+          "Careers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved career opportunities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CareerManagement"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new career opportunity",
+        "tags": [
+          "Careers"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "category",
+                  "role",
+                  "description"
+                ],
+                "properties": {
+                  "category": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Career opportunity created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CareerManagement"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/careers/{id}": {
+      "get": {
+        "summary": "Get a career opportunity by ID",
+        "tags": [
+          "Careers"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the career opportunity to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Career opportunity found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CareerManagement"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Career opportunity not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a career opportunity",
+        "tags": [
+          "Careers"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the career opportunity to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "category": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Career opportunity updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CareerManagement"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "Career opportunity not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a career opportunity",
+        "tags": [
+          "Careers"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the career opportunity to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Career opportunity deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Career opportunity deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "Career opportunity not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/contact": {
+      "post": {
+        "summary": "Submit a contact form",
+        "tags": [
+          "Contact"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "email",
+                  "phoneNumber",
+                  "message"
+                ],
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "phoneNumber": {
+                    "type": "string"
+                  },
+                  "requestMessage": {
+                    "type": "string"
+                  },
+                  "pinCode": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contact form submitted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all contact submissions",
+        "tags": [
+          "Contact"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            },
+            "description": "Items per page"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "inProgress",
+                "resolved"
+              ]
+            },
+            "description": "Filter by status"
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search term for name, email, etc."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved contacts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Contact"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "total": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "type": "integer"
+                        },
+                        "pages": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/contact/{id}": {
+      "get": {
+        "summary": "Get a contact by ID",
+        "tags": [
+          "Contact"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the contact to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Contact not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a contact",
+        "tags": [
+          "Contact"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the contact to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "phoneNumber": {
+                    "type": "string"
+                  },
+                  "requestMessage": {
+                    "type": "string"
+                  },
+                  "pinCode": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pending",
+                      "inProgress",
+                      "resolved"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contact updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Contact not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a contact",
+        "tags": [
+          "Contact"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the contact to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Contact deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Contact not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/contact/{id}/status": {
+      "patch": {
+        "summary": "Update contact status",
+        "tags": [
+          "Contact"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the contact",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pending",
+                      "inProgress",
+                      "resolved"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contact status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Contact not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/content": {
+      "post": {
+        "summary": "Create a new content entry",
+        "tags": [
+          "Content"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Content title"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Content description"
+                  },
+                  "banner": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Banner image file"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Main image file"
+                  },
+                  "video": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Video file"
+                  }
+                },
+                "required": [
+                  "title",
+                  "description"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Content created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Content"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all content entries",
+        "tags": [
+          "Content"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all content entries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Content"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/content/{id}": {
+      "get": {
+        "summary": "Get a content entry by ID",
+        "tags": [
+          "Content"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of the content to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Content entry found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Content"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Content not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a content entry",
+        "tags": [
+          "Content"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of the content to update"
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Updated title"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Updated description"
+                  },
+                  "banner": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Updated banner image file"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Updated main image file"
+                  },
+                  "video": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Updated video file"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Content updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Content"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Content not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a content entry",
+        "tags": [
+          "Content"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of the content to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Content deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Content deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Content not found"
+          }
+        }
+      }
+    },
+    "/api/experts": {
+      "get": {
+        "summary": "Get all experts",
+        "tags": [
+          "Experts"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            },
+            "description": "Items per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved experts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Expert"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "total": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "type": "integer"
+                        },
+                        "pages": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new expert",
+        "tags": [
+          "Experts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "role",
+                  "description"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Expert created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Expert"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/experts/{id}": {
+      "get": {
+        "summary": "Get an expert by ID",
+        "tags": [
+          "Experts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the expert to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expert found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Expert"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Expert not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an expert",
+        "tags": [
+          "Experts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the expert to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Expert updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Expert"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Expert not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an expert",
+        "tags": [
+          "Experts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the expert to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expert deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Expert deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Expert not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/faqs": {
+      "get": {
+        "summary": "Get all FAQs",
+        "tags": [
+          "FAQs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved FAQs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Faq"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new FAQ",
+        "tags": [
+          "FAQs"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "question"
+                ],
+                "properties": {
+                  "question": {
+                    "type": "string"
+                  },
+                  "ans": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "FAQ created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Faq"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/faqs/active": {
+      "get": {
+        "summary": "Get active FAQs only",
+        "tags": [
+          "FAQs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved active FAQs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Faq"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/faqs/{id}": {
+      "get": {
+        "summary": "Get a FAQ by ID",
+        "tags": [
+          "FAQs"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the FAQ to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "FAQ found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Faq"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "FAQ not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a FAQ",
+        "tags": [
+          "FAQs"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the FAQ to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "question": {
+                    "type": "string"
+                  },
+                  "ans": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "FAQ updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Faq"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "FAQ not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a FAQ",
+        "tags": [
+          "FAQs"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the FAQ to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "FAQ deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "FAQ deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "FAQ not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/loan-applications": {
+      "post": {
+        "summary": "Submit a loan application",
+        "tags": [
+          "Loan Applications"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "loanType",
+                  "fullName",
+                  "email",
+                  "pincode",
+                  "loanAmount",
+                  "phoneNumber",
+                  "businessType",
+                  "securityType"
+                ],
+                "properties": {
+                  "loanType": {
+                    "type": "string",
+                    "example": "Business Loan"
+                  },
+                  "fullName": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "john.doe@example.com"
+                  },
+                  "pincode": {
+                    "type": "string",
+                    "example": "380015"
+                  },
+                  "loanAmount": {
+                    "type": "number",
+                    "example": 500000
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "9876543210"
+                  },
+                  "businessType": {
+                    "type": "string",
+                    "example": "Retail"
+                  },
+                  "securityType": {
+                    "type": "string",
+                    "example": "Property"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Loan application submitted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/LoanApplication"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all loan applications",
+        "tags": [
+          "Loan Applications"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            },
+            "description": "Items per page"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "reviewing",
+                "approved",
+                "rejected"
+              ]
+            },
+            "description": "Filter by status"
+          },
+          {
+            "in": "query",
+            "name": "loanType",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by loan type"
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search term for name, email, etc."
+          },
+          {
+            "in": "query",
+            "name": "minAmount",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Minimum loan amount filter"
+          },
+          {
+            "in": "query",
+            "name": "maxAmount",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Maximum loan amount filter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved applications",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/LoanApplication"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "total": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "type": "integer"
+                        },
+                        "pages": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/loan-applications/{id}": {
+      "get": {
+        "summary": "Get a loan application by ID",
+        "tags": [
+          "Loan Applications"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the application to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/LoanApplication"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Application not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a loan application",
+        "tags": [
+          "Loan Applications"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the application to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Loan application deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Application not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/loan-applications/{id}/status": {
+      "patch": {
+        "summary": "Update loan application status",
+        "tags": [
+          "Loan Applications"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the application",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pending",
+                      "reviewing",
+                      "approved",
+                      "rejected"
+                    ]
+                  },
+                  "notes": {
+                    "type": "string",
+                    "description": "Optional notes about the status change"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Application status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/LoanApplication"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Application not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/plans": {
+      "get": {
+        "summary": "Get all plans",
+        "tags": [
+          "Plans"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            },
+            "description": "Items per page"
+          },
+          {
+            "in": "query",
+            "name": "visibleOnly",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            },
+            "description": "Only return visible plans"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved plans",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Plan"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "total": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "type": "integer"
+                        },
+                        "pages": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new plan",
+        "tags": [
+          "Plans"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "price",
+                  "features",
+                  "description"
+                ],
+                "properties": {
+                  "price": {
+                    "type": "number"
+                  },
+                  "features": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "showHideFlag": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Plan created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Plan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/plans/{id}": {
+      "get": {
+        "summary": "Get a plan by ID",
+        "tags": [
+          "Plans"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the plan to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Plan found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Plan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Plan not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a plan",
+        "tags": [
+          "Plans"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the plan to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "price": {
+                    "type": "number"
+                  },
+                  "features": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "showHideFlag": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Plan updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Plan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Plan not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a plan",
+        "tags": [
+          "Plans"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the plan to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Plan deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Plan deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Plan not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/plans/{id}/toggle-visibility": {
+      "patch": {
+        "summary": "Toggle plan visibility",
+        "tags": [
+          "Plans"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the plan to toggle visibility",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Plan visibility toggled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Plan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Plan not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/services": {
+      "get": {
+        "summary": "Get all services",
+        "tags": [
+          "Services"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved services",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Service"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new service",
+        "tags": [
+          "Services"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "description",
+                  "category"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "services": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "icon": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Service created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Service"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/services/{id}": {
+      "get": {
+        "summary": "Get a service by ID",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the service to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Service"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Service not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a service",
+        "tags": [
+          "Services"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the service to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "services": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "icon": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Service updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Service"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "Service not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a service",
+        "tags": [
+          "Services"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the service to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Service deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "Service not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/success-stories": {
+      "get": {
+        "summary": "Get all success stories",
+        "tags": [
+          "SuccessStories"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved success stories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SuccessStory"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new success story",
+        "tags": [
+          "SuccessStories"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "clientName",
+                  "content"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "clientName": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  },
+                  "showHideFlag": {
+                    "type": "boolean"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success story created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/SuccessStory"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/success-stories/visible": {
+      "get": {
+        "summary": "Get visible success stories only",
+        "tags": [
+          "SuccessStories"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved visible success stories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SuccessStory"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/success-stories/{id}": {
+      "get": {
+        "summary": "Get a success story by ID",
+        "tags": [
+          "SuccessStories"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the success story to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success story found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/SuccessStory"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Success story not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a success story",
+        "tags": [
+          "SuccessStories"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the success story to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "clientName": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  },
+                  "showHideFlag": {
+                    "type": "boolean"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success story updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/SuccessStory"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "Success story not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a success story",
+        "tags": [
+          "SuccessStories"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the success story to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success story deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success story deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "Success story not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/terms/active": {
+      "get": {
+        "summary": "Get active terms and conditions",
+        "tags": [
+          "Terms"
+        ],
+        "responses": {
+          "200": {
+            "description": "Active terms and conditions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Terms"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No active terms found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/terms": {
+      "get": {
+        "summary": "Get all terms and conditions versions",
+        "tags": [
+          "Terms"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all terms versions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Terms"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create new terms and conditions",
+        "tags": [
+          "Terms"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "content",
+                  "version"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Title of the terms"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Content of the terms in HTML format"
+                  },
+                  "version": {
+                    "type": "string",
+                    "description": "Version number of the terms"
+                  },
+                  "isActive": {
+                    "type": "boolean",
+                    "description": "Whether this version should be active",
+                    "default": true
+                  },
+                  "effectiveDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Date when these terms become effective"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Terms created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Terms"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Terms created successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/terms/{id}": {
+      "get": {
+        "summary": "Get terms by ID",
+        "tags": [
+          "Terms"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of the terms"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Terms found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Terms"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Terms not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update terms and conditions",
+        "tags": [
+          "Terms"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of the terms to update"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Title of the terms"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Content of the terms in HTML format"
+                  },
+                  "version": {
+                    "type": "string",
+                    "description": "Version number of the terms"
+                  },
+                  "isActive": {
+                    "type": "boolean",
+                    "description": "Whether this version should be active"
+                  },
+                  "effectiveDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Date when these terms become effective"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Terms updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Terms"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Terms updated successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Terms not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete terms version",
+        "tags": [
+          "Terms"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of the terms to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Terms deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Terms deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Cannot delete active terms"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Terms not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/terms/{id}/activate": {
+      "patch": {
+        "summary": "Set terms as active",
+        "tags": [
+          "Terms"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of the terms to activate"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Terms activated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Terms"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Terms activated successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "Terms not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/testimonials": {
+      "get": {
+        "summary": "Get all testimonials",
+        "tags": [
+          "Testimonials"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved testimonials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Testimonial"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new testimonial",
+        "tags": [
+          "Testimonials"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "feedback"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "feedback": {
+                    "type": "string"
+                  },
+                  "stars": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Testimonial created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Testimonial"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/testimonials/{id}": {
+      "get": {
+        "summary": "Get a testimonial by ID",
+        "tags": [
+          "Testimonials"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the testimonial to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Testimonial found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Testimonial"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Testimonial not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a testimonial",
+        "tags": [
+          "Testimonials"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the testimonial to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "feedback": {
+                    "type": "string"
+                  },
+                  "stars": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Testimonial updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Testimonial"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data provided"
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "Testimonial not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a testimonial",
+        "tags": [
+          "Testimonials"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the testimonial to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Testimonial deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Testimonial deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated or not authorized"
+          },
+          "404": {
+            "description": "Testimonial not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/users/register": {
+      "post": {
+        "summary": "Register a new user",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "mobileNumber": {
+                    "type": "string",
+                    "description": "Indian mobile number (10 digits starting with 6-9)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User registered successfully and OTP sent to email"
+          },
+          "400": {
+            "description": "Bad request - Invalid input or email already exists"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/users/verify-email": {
+      "post": {
+        "summary": "Verify email with OTP",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "otp"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "otp": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Email verified successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "user": {
+                          "type": "object"
+                        },
+                        "tokens": {
+                          "type": "object"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid OTP"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/users/resend-verification": {
+      "post": {
+        "summary": "Resend verification OTP",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Verification OTP sent successfully"
+          },
+          "400": {
+            "description": "Email already verified or bad request"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/users/login": {
+      "post": {
+        "summary": "Login user and get tokens",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "user": {
+                          "type": "object"
+                        },
+                        "tokens": {
+                          "type": "object",
+                          "properties": {
+                            "access": {
+                              "type": "object",
+                              "properties": {
+                                "token": {
+                                  "type": "string"
+                                },
+                                "expires": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                }
+                              }
+                            },
+                            "refresh": {
+                              "type": "object",
+                              "properties": {
+                                "token": {
+                                  "type": "string"
+                                },
+                                "expires": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "403": {
+            "description": "Email not verified"
+          }
+        }
+      }
+    },
+    "/api/users/refresh-tokens": {
+      "post": {
+        "summary": "Refresh access token",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "refreshToken"
+                ],
+                "properties": {
+                  "refreshToken": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tokens refreshed successfully"
+          },
+          "401": {
+            "description": "Invalid refresh token"
+          }
+        }
+      }
+    },
+    "/api/users/logout": {
+      "post": {
+        "summary": "Logout user",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "refreshToken"
+                ],
+                "properties": {
+                  "refreshToken": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Logged out successfully"
+          },
+          "400": {
+            "description": "Invalid refresh token"
+          }
+        }
+      }
+    },
+    "/api/users/profile": {
+      "get": {
+        "summary": "Get current user profile",
+        "tags": [
+          "Auth"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User profile retrieved successfully"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update user profile",
+        "tags": [
+          "Auth"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "mobileNumber": {
+                    "type": "string",
+                    "description": "Indian mobile number (10 digits starting with 6-9)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Profile updated successfully"
+          },
+          "400": {
+            "description": "Bad request - Invalid input"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Addresses",
+      "description": "Address management API endpoints"
+    },
+    {
+      "name": "Blogs",
+      "description": "Blog management API endpoints"
+    },
+    {
+      "name": "Career Applications",
+      "description": "Career application form API endpoints"
+    },
+    {
+      "name": "Careers",
+      "description": "Career management API endpoints"
+    },
+    {
+      "name": "Contact",
+      "description": "Contact form API endpoints"
+    },
+    {
+      "name": "Content",
+      "description": "Content management API"
+    },
+    {
+      "name": "Experts",
+      "description": "Expert management API endpoints"
+    },
+    {
+      "name": "FAQs",
+      "description": "FAQ management API endpoints"
+    },
+    {
+      "name": "Loan Applications",
+      "description": "Loan application form API endpoints"
+    },
+    {
+      "name": "Plans",
+      "description": "Plan management API endpoints"
+    },
+    {
+      "name": "Services",
+      "description": "Service management API endpoints"
+    },
+    {
+      "name": "SuccessStories",
+      "description": "Success story management API endpoints"
+    },
+    {
+      "name": "Terms",
+      "description": "Terms and conditions management endpoints"
+    },
+    {
+      "name": "Testimonials",
+      "description": "Testimonial management API endpoints"
+    },
+    {
+      "name": "Auth",
+      "description": "Authentication and user management"
+    }
+  ]
+}

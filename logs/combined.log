@@ -71,3 +71,91 @@
 2025-05-11 12:51:10 [INFO]: GET /api-docs/swagger-ui-bundle.js 304 - - 2.238 ms - {}
 2025-05-11 12:51:10 [INFO]: GET /api-docs/swagger-ui-standalone-preset.js 200 229223 - 4.857 ms - {}
 2025-05-11 12:51:10 [INFO]: GET /api-docs/favicon-32x32.png 304 - - 0.913 ms - {}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-05-11 13:33:47"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-05-11 13:33:47"}
+{"level":"error","message":"Error connecting to MongoDB: Server selection timed out after 5000 ms","timestamp":"2025-05-11 13:33:52"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-05-11 13:35:00"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-05-11 13:35:00"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-05-11 13:35:03"}
+{"level":"info","message":"GET /api-docs/ 200 - - 4.176 ms - {}","timestamp":"2025-05-11 13:35:33"}
+{"level":"info","message":"GET /api-docs/swagger-ui-bundle.js 304 - - 1.801 ms - {}","timestamp":"2025-05-11 13:35:33"}
+{"level":"info","message":"GET /api-docs/swagger-ui.css 304 - - 2.069 ms - {}","timestamp":"2025-05-11 13:35:33"}
+{"level":"info","message":"GET /api-docs/swagger-ui-standalone-preset.js 304 - - 0.548 ms - {}","timestamp":"2025-05-11 13:35:33"}
+{"level":"info","message":"GET /api-docs/swagger-ui-init.js 200 - - 0.179 ms - {}","timestamp":"2025-05-11 13:35:33"}
+{"level":"info","message":"GET /api-docs/swagger-ui-standalone-preset.js 304 - - 1.649 ms - {}","timestamp":"2025-05-11 13:35:33"}
+{"level":"info","message":"GET /api-docs/swagger-ui-init.js 200 - - 0.283 ms - {}","timestamp":"2025-05-11 13:35:33"}
+{"level":"info","message":"GET /api-docs/swagger-ui-bundle.js 200 - - 5.223 ms - {}","timestamp":"2025-05-11 13:35:33"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.840 ms - {}","timestamp":"2025-05-11 13:35:33"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.360 ms - {}","timestamp":"2025-05-11 13:35:33"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-05-11 13:37:44"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-05-11 13:37:44"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-05-11 13:37:47"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-05-11 13:39:17"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-05-11 13:39:17"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-05-11 13:39:20"}
+{"level":"info","message":"GET /api-docs?apiKey=your_secure_api_key_here 301 190 - 2.126 ms - {}","timestamp":"2025-05-11 13:39:27"}
+{"level":"info","message":"GET /api-docs/?apiKey=your_secure_api_key_here 200 - - 1.415 ms - {}","timestamp":"2025-05-11 13:39:27"}
+{"level":"info","message":"GET /api-docs/swagger-ui.css 304 - - 1.858 ms - {}","timestamp":"2025-05-11 13:39:27"}
+{"level":"info","message":"GET /api-docs/swagger-ui-standalone-preset.js 304 - - 1.317 ms - {}","timestamp":"2025-05-11 13:39:27"}
+{"level":"info","message":"GET /api-docs/swagger-ui-init.js 304 - - 3.467 ms - {}","timestamp":"2025-05-11 13:39:27"}
+{"level":"info","message":"GET /api-docs/swagger-ui-bundle.js 304 - - 7.324 ms - {}","timestamp":"2025-05-11 13:39:27"}
+{"level":"info","message":"GET /api-docs/swagger-ui-standalone-preset.js 304 - - 0.374 ms - {}","timestamp":"2025-05-11 13:39:27"}
+{"level":"info","message":"GET /api-docs/swagger-ui-init.js 304 - - 1.429 ms - {}","timestamp":"2025-05-11 13:39:27"}
+{"level":"info","message":"GET /api-docs/swagger-ui-bundle.js 304 - - 1.111 ms - {}","timestamp":"2025-05-11 13:39:27"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.550 ms - {}","timestamp":"2025-05-11 13:39:27"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.525 ms - {}","timestamp":"2025-05-11 13:39:27"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-05-11 13:58:20"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-05-11 13:58:20"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-05-11 13:58:24"}
+{"level":"info","message":"GET /api-docs/?apiKey=your_secure_api_key_here 304 - - 3.012 ms - {}","timestamp":"2025-05-11 13:58:25"}
+{"level":"info","message":"GET /api-docs/swagger-ui-bundle.js 304 - - 2.389 ms - {}","timestamp":"2025-05-11 13:58:25"}
+{"level":"info","message":"GET /api-docs/swagger-ui-standalone-preset.js 304 - - 4.084 ms - {}","timestamp":"2025-05-11 13:58:25"}
+{"level":"info","message":"GET /api-docs/swagger-ui.css 304 - - 2.289 ms - {}","timestamp":"2025-05-11 13:58:25"}
+{"level":"info","message":"GET /api-docs/swagger-ui-init.js 200 - - 0.589 ms - {}","timestamp":"2025-05-11 13:58:25"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.298 ms - {}","timestamp":"2025-05-11 13:58:25"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.562 ms - {}","timestamp":"2025-05-11 13:58:25"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-05-11 14:37:30"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-05-11 14:37:30"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-05-11 14:37:35"}
+{"level":"info","message":"GET /api-docs/?apiKey=your_secure_api_key_here 304 - - 3.266 ms - {}","timestamp":"2025-05-11 14:37:38"}
+{"level":"info","message":"GET /api-docs/swagger-ui.css 304 - - 1.710 ms - {}","timestamp":"2025-05-11 14:37:38"}
+{"level":"info","message":"GET /api-docs/swagger-ui-bundle.js 304 - - 2.611 ms - {}","timestamp":"2025-05-11 14:37:38"}
+{"level":"info","message":"GET /api-docs/swagger-ui-standalone-preset.js 304 - - 2.279 ms - {}","timestamp":"2025-05-11 14:37:38"}
+{"level":"info","message":"GET /api-docs/swagger-ui-init.js 200 - - 0.379 ms - {}","timestamp":"2025-05-11 14:37:38"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.256 ms - {}","timestamp":"2025-05-11 14:37:39"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.319 ms - {}","timestamp":"2025-05-11 14:37:39"}
+{"level":"info","message":"GET /api/services 200 26 - 271.704 ms - {}","timestamp":"2025-05-11 14:39:28"}
+{"level":"info","message":"POST /api/services 401 68 - 1.726 ms - {}","timestamp":"2025-05-11 14:39:41"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-05-11 15:15:05"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-05-11 15:15:05"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-05-11 15:15:09"}
+{"level":"info","message":"GET /api-docs/?apiKey=your_secure_api_key_here 304 - - 3.351 ms - {}","timestamp":"2025-05-11 15:15:53"}
+{"level":"info","message":"GET /api-docs/swagger-ui.css 304 - - 5.457 ms - {}","timestamp":"2025-05-11 15:15:53"}
+{"level":"info","message":"GET /api-docs/swagger-ui-bundle.js 304 - - 4.805 ms - {}","timestamp":"2025-05-11 15:15:53"}
+{"level":"info","message":"GET /api-docs/swagger-ui-standalone-preset.js 304 - - 35.543 ms - {}","timestamp":"2025-05-11 15:15:53"}
+{"level":"info","message":"GET /api-docs/swagger-ui-init.js 200 - - 18.879 ms - {}","timestamp":"2025-05-11 15:15:53"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.291 ms - {}","timestamp":"2025-05-11 15:15:53"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.280 ms - {}","timestamp":"2025-05-11 15:15:53"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-05-11 15:16:30"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-05-11 15:16:30"}
+{"level":"error","message":"Error connecting to MongoDB: Server selection timed out after 5000 ms","timestamp":"2025-05-11 15:16:36"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-05-11 15:18:07"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-05-11 15:18:07"}
+{"level":"error","message":"Error connecting to MongoDB: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2025-05-11 15:18:12"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-05-11 15:18:21"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-05-11 15:18:21"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-05-11 15:18:25"}
+{"level":"info","message":"GET /api-docs/?apiKey=your_secure_api_key_here 304 - - 2.935 ms - {}","timestamp":"2025-05-11 15:18:42"}
+{"level":"info","message":"GET /api-docs/swagger-ui-init.js 304 - - 7.231 ms - {}","timestamp":"2025-05-11 15:18:42"}
+{"level":"info","message":"GET /api-docs/swagger-ui-bundle.js 304 - - 0.980 ms - {}","timestamp":"2025-05-11 15:18:42"}
+{"level":"info","message":"GET /api-docs/swagger-ui.css 304 - - 0.385 ms - {}","timestamp":"2025-05-11 15:18:42"}
+{"level":"info","message":"GET /api-docs/swagger-ui-standalone-preset.js 304 - - 0.554 ms - {}","timestamp":"2025-05-11 15:18:42"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.308 ms - {}","timestamp":"2025-05-11 15:18:42"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.279 ms - {}","timestamp":"2025-05-11 15:18:42"}
+{"level":"info","message":"GET /api-docs/ 304 - - 2.514 ms - {}","timestamp":"2025-05-11 15:30:52"}
+{"level":"info","message":"GET /api-docs/swagger-ui-bundle.js 304 - - 3.783 ms - {}","timestamp":"2025-05-11 15:30:52"}
+{"level":"info","message":"GET /api-docs/swagger-ui.css 304 - - 3.422 ms - {}","timestamp":"2025-05-11 15:30:52"}
+{"level":"info","message":"GET /api-docs/swagger-ui-standalone-preset.js 304 - - 1.004 ms - {}","timestamp":"2025-05-11 15:30:52"}
+{"level":"info","message":"GET /api-docs/swagger-ui-init.js 304 - - 2.384 ms - {}","timestamp":"2025-05-11 15:30:52"}
+{"level":"info","message":"GET /api-docs/favicon-32x32.png 304 - - 0.820 ms - {}","timestamp":"2025-05-11 15:30:53"}
+{"level":"info","message":"GET /api-docs/swagger.json 200 3047 - 0.917 ms - {}","timestamp":"2025-05-11 15:33:05"}

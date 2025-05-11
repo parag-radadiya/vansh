@@ -8,6 +8,18 @@ const cors = require('cors');
 const connectDB = require('./config/database');
 const userRoutes = require('./routes/userRoutes');
 const contentRoutes = require('./routes/contentRoutes');
+const serviceRoutes = require('./routes/serviceRoutes');
+const careerRoutes = require('./routes/careerRoutes');
+const careerApplicationRoutes = require('./routes/careerApplicationRoutes');
+const faqRoutes = require('./routes/faqRoutes');
+const testimonialRoutes = require('./routes/testimonialRoutes');
+const successStoryRoutes = require('./routes/successStoryRoutes');
+const blogRoutes = require('./routes/blogRoutes');
+const expertRoutes = require('./routes/expertRoutes');
+const planRoutes = require('./routes/planRoutes');
+const contactRoutes = require('./routes/contactRoutes');
+const termsRoutes = require('./routes/termsRoutes');
+const loanApplicationRoutes = require('./routes/loanApplicationRoutes');
 const requestLogger = require('./middleware/requestLogger');
 const notFoundHandler = require('./middleware/notFoundHandler');
 const errorHandler = require('./middleware/errorHandler');
@@ -101,6 +113,18 @@ if (process.env.NODE_ENV !== 'production' || process.env.ENABLE_DOCS === 'true')
 // API Routes
 app.use('/api/users', userRoutes);
 app.use('/api/content', contentRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/careers', careerRoutes);
+app.use('/api/career-applications', careerApplicationRoutes);
+app.use('/api/faqs', faqRoutes);
+app.use('/api/testimonials', testimonialRoutes);
+app.use('/api/success-stories', successStoryRoutes);
+app.use('/api/blogs', blogRoutes);
+app.use('/api/experts', expertRoutes);
+app.use('/api/plans', planRoutes);
+app.use('/api/contact', contactRoutes);
+app.use('/api/terms', termsRoutes);
+app.use('/api/loan-applications', loanApplicationRoutes);
 
 // Root route for API health check
 app.get('/health', (req, res) => {
