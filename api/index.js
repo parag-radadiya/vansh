@@ -1,7 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
-const fs = require('fs');
 const helmet = require('helmet');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
@@ -17,12 +16,6 @@ const logger = require('./utils/logger/logger');
 
 // Load environment variables
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
-
-// Create logs directory if it doesn't exist
-const logsDir = path.join(process.cwd(), 'logs');
-if (!fs.existsSync(logsDir)) {
-  fs.mkdirSync(logsDir);
-}
 
 // Initialize Express app
 const app = express();
