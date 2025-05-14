@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
 const helmet = require('helmet');
+require('dotenv').config();
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 const cors = require('cors');

@@ -119,13 +119,12 @@ class ContactService {
       try {
         // You may want to add email notification to administrators
         // This would use your existing emailService
-        /*
         await emailService.sendEmail({
           to: process.env.ADMIN_EMAIL || 'admin@example.com',
           subject: 'New Contact Form Submission',
           text: `New contact form submission from ${contact.firstName} ${contact.lastName}. Email: ${contact.email}, Phone: ${contact.phoneNumber}`
         });
-        */
+
       } catch (emailError) {
         logger.error(`Failed to send contact notification email: ${emailError.message}`);
         // Continue processing even if email fails

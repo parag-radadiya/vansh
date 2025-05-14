@@ -4,26 +4,37 @@ const moment = require('moment');
 const { v4: uuidv4 } = require('uuid');
 const OTP = require('../../models/Otp');
 
-/**
- * Email service for sending various email types, including OTPs
- */
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT),
+  secure: process.env.SMTP_SECURE === 'true', // true for 465
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD
+  }
+});
+
+const sendEmail = async ({ to, subject, text }) => {
+  const mailOptions = {
+    from: process.env.EMAIL_FROM,
+    to,
+    subject,
+    text
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
 class EmailService {
   constructor() {
     this.transporter = null;
-    this.initializeTransporter();
+    this.initializing = this.initializeTransporter();
   }
 
-  /**
-   * Initialize the email transporter
-   * @private
-   */
   async initializeTransporter() {
-    // For development, use Ethereal for testing
-    if (process.env.NODE_ENV === 'development' && !process.env.SMTP_HOST) {
-      // Create a test account on Ethereal
-      try {
+    try {
+      if (process.env.NODE_ENV === 'development' && !process.env.SMTP_HOST) {
         const testAccount = await nodemailer.createTestAccount();
-        
         this.transporter = nodemailer.createTransport({
           host: 'smtp.ethereal.email',
           port: 587,
@@ -33,79 +44,57 @@ class EmailService {
             pass: testAccount.pass,
           },
         });
-        
-        logger.info(`Ethereal email test account created: ${testAccount.user}`);
-        logger.info(`Ethereal email password: ${testAccount.pass}`);
-        logger.info(`View emails at: https://ethereal.email`);
-      } catch (error) {
-        logger.error(`Failed to create test email account: ${error.message}`);
+
+        logger.info(`Using Ethereal SMTP: ${testAccount.user}`);
+        logger.info(`Preview emails at: https://ethereal.email`);
+      } else {
+        this.transporter = nodemailer.createTransport({
+          host: process.env.SMTP_HOST,
+          port: Number(process.env.SMTP_PORT),
+          secure: process.env.SMTP_SECURE === 'true',
+          auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASSWORD,
+          },
+        });
+
+        logger.info(`Using SMTP: ${process.env.SMTP_HOST}:${process.env.SMTP_PORT}, secure=${process.env.SMTP_SECURE}`);
       }
-    } else {
-      // Use configured SMTP server
-      this.transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: process.env.SMTP_PORT,
-        secure: process.env.SMTP_SECURE === 'true',
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASSWORD,
-        },
-      });
+    } catch (error) {
+      logger.error(`Failed to initialize transporter: ${error.message}`);
+      throw error;
     }
   }
 
-  /**
-   * Generate a numeric OTP code
-   * @returns {string} 6-digit OTP code
-   */
   generateOTP() {
     return Math.floor(100000 + Math.random() * 900000).toString();
   }
 
-  /**
-   * Save OTP to the database
-   * @param {string} email - User's email address
-   * @param {string} otpCode - Generated OTP code
-   * @param {string} purpose - Purpose of the OTP ('verification' or 'passwordReset')
-   * @returns {Promise<Object>} The saved OTP document
-   */
   async saveOTP(email, otpCode, purpose = 'verification') {
-    // Delete any existing OTPs for this email and purpose
     await OTP.deleteMany({ email, purpose });
-    
-    // Create a new OTP document
+
     const otp = new OTP({
       email,
       otp: otpCode,
       purpose,
-      expires: moment().add(10, 'minutes').toDate(), // OTP expires in 10 minutes
+      expires: moment().add(10, 'minutes').toDate(),
     });
-    
+
     await otp.save();
     return otp;
   }
 
-  /**
-   * Send an OTP verification email
-   * @param {string} email - Recipient's email address
-   * @returns {Promise<Object>} Object containing the message ID and preview URL
-   */
   async sendVerificationOTP(email) {
     try {
-      // Ensure transporter is initialized
       if (!this.transporter) {
-        await this.initializeTransporter();
+        await this.initializing;
       }
-      
-      // Generate OTP code
+
       const otpCode = this.generateOTP();
-      
-      // Save OTP to database
       await this.saveOTP(email, otpCode, 'verification');
-      
-      // Send email with OTP
+
       const info = await this.transporter.sendMail({
-        from: process.env.EMAIL_FROM || '"Vercel Node App" <noreply@example.com>',
+        from: process.env.EMAIL_FROM || '"Vansh App" <noreply@example.com>',
         to: email,
         subject: 'Email Verification Code',
         text: `Your verification code is: ${otpCode}. It expires in 10 minutes.`,
@@ -121,10 +110,8 @@ class EmailService {
           </div>
         `,
       });
-      
+
       logger.info(`Verification email sent to ${email}: ${info.messageId}`);
-      
-      // Return message ID and preview URL (for Ethereal)
       return {
         messageId: info.messageId,
         previewUrl: nodemailer.getTestMessageUrl(info),
@@ -135,32 +122,26 @@ class EmailService {
     }
   }
 
-  /**
-   * Verify OTP code
-   * @param {string} email - User's email address
-   * @param {string} otpCode - OTP code to verify
-   * @param {string} purpose - Purpose of the OTP
-   * @returns {Promise<boolean>} True if OTP is valid, false otherwise
-   */
   async verifyOTP(email, otpCode, purpose = 'verification') {
-    // Find the latest OTP for this email and purpose
     const otp = await OTP.findOne({
       email,
       purpose,
       isUsed: false,
-      expires: { $gt: new Date() }
+      expires: { $gt: new Date() },
     }).sort({ createdAt: -1 });
-    
+
     if (!otp || otp.otp !== otpCode) {
       return false;
     }
-    
-    // Mark the OTP as used
+
     otp.isUsed = true;
     await otp.save();
-    
+
     return true;
   }
 }
 
-module.exports = new EmailService();
+module.exports = {
+  sendEmail,
+  emailService: new EmailService()
+};
