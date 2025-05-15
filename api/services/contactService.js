@@ -114,22 +114,22 @@ class ContactService {
   async createContact(contactData) {
     try {
       const contact = await Contact.create(contactData);
-      
+
       // Send notification email to admin (if configured)
       try {
-        // You may want to add email notification to administrators
-        // This would use your existing emailService
         await emailService.sendEmail({
           to: process.env.ADMIN_EMAIL || 'admin@example.com',
           subject: 'New Contact Form Submission',
           text: `New contact form submission from ${contact.firstName} ${contact.lastName}. Email: ${contact.email}, Phone: ${contact.phoneNumber}`
         });
 
+        logger.info(`Notification email sent for contact ID: ${contact.email}`); // ✅ Log success
+
       } catch (emailError) {
         logger.error(`Failed to send contact notification email: ${emailError.message}`);
         // Continue processing even if email fails
       }
-      
+
       return {
         success: true,
         data: contact
@@ -139,9 +139,9 @@ class ContactService {
       return {
         success: false,
         error: error.message,
-        statusCode: error.name === 'ValidationError' 
-          ? httpStatus.BAD_REQUEST 
-          : httpStatus.INTERNAL_SERVER_ERROR
+        statusCode: error.name === 'ValidationError'
+            ? httpStatus.BAD_REQUEST
+            : httpStatus.INTERNAL_SERVER_ERROR
       };
     }
   }
