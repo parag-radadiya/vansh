@@ -124,7 +124,7 @@ class LoanApplicationService {
   async createApplication(applicationData) {
     try {
       const application = await LoanApplication.create(applicationData);
-      
+
       // Send confirmation email to applicant
       try {
         await emailService.sendEmail({
@@ -136,23 +136,19 @@ class LoanApplicationService {
         logger.error(`Failed to send confirmation email: ${emailError.message}`);
         // Continue processing even if email fails
       }
-      
-      // Send notification to admin (optional)
+
+      // Send notification email to admin
       try {
-        // You may want to notify admins about new loan applications
-        // This would use your existing emailService
-        /*
         await emailService.sendEmail({
           to: process.env.ADMIN_EMAIL || 'admin@example.com',
           subject: 'New Loan Application',
-          text: `New loan application received for ${application.loanType} from ${application.fullName}. Amount: ₹${application.loanAmount}, Email: ${application.email}`
+          text: `New loan application received:\n\nLoan Type: ${application.loanType}\nName: ${application.fullName}\nEmail: ${application.email}\nPhone: ${application.phoneNumber}\nAmount: ₹${application.loanAmount}\nReference ID: ${application._id}`
         });
-        */
       } catch (emailError) {
         logger.error(`Failed to send admin notification email: ${emailError.message}`);
         // Continue processing even if email fails
       }
-      
+
       return {
         success: true,
         data: application
@@ -162,12 +158,13 @@ class LoanApplicationService {
       return {
         success: false,
         error: error.message,
-        statusCode: error.name === 'ValidationError' 
-          ? httpStatus.BAD_REQUEST 
-          : httpStatus.INTERNAL_SERVER_ERROR
+        statusCode: error.name === 'ValidationError'
+            ? httpStatus.BAD_REQUEST
+            : httpStatus.INTERNAL_SERVER_ERROR
       };
     }
   }
+
 
   /**
    * Update application status

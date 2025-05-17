@@ -114,7 +114,7 @@ class CareerApplicationService {
   async createApplication(applicationData) {
     try {
       const application = await CareerApplication.create(applicationData);
-      
+
       // Send confirmation email to applicant
       try {
         await emailService.sendEmail({
@@ -126,23 +126,30 @@ class CareerApplicationService {
         logger.error(`Failed to send confirmation email: ${emailError.message}`);
         // Continue processing even if email fails
       }
-      
-      // Send notification to admin (optional)
+
+      // Notify admin of new application
       try {
-        // You may want to notify admins about new applications
-        // This would use your existing emailService
-        /*
         await emailService.sendEmail({
           to: process.env.ADMIN_EMAIL || 'admin@example.com',
-          subject: 'New Job Application',
-          text: `New job application received for ${application.role} from ${application.firstName} ${application.lastName}. Email: ${application.email}`
+          subject: 'New Job Application Received',
+          text: `A new job application has been submitted.
+
+Position: ${application.role}
+Name: ${application.firstName} ${application.lastName}
+Email: ${application.email}
+Phone: ${application.phoneNumber || 'N/A'}
+Status: ${application.status || 'N/A'}
+
+Cover Message:
+${application.message || 'No message provided'}
+
+Resume:
+${application.resume?.url || 'No resume uploaded'}`
         });
-        */
       } catch (emailError) {
         logger.error(`Failed to send admin notification email: ${emailError.message}`);
-        // Continue processing even if email fails
       }
-      
+
       return {
         success: true,
         data: application
@@ -152,12 +159,13 @@ class CareerApplicationService {
       return {
         success: false,
         error: error.message,
-        statusCode: error.name === 'ValidationError' 
-          ? httpStatus.BAD_REQUEST 
-          : httpStatus.INTERNAL_SERVER_ERROR
+        statusCode: error.name === 'ValidationError'
+            ? httpStatus.BAD_REQUEST
+            : httpStatus.INTERNAL_SERVER_ERROR
       };
     }
   }
+
 
   /**
    * Update application status
