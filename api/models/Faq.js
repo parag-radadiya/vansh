@@ -64,6 +64,9 @@ const FaqSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
+  category: {
+    type: String,
+  },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

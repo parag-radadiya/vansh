@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const Token = require('../models/Token');
-const emailService = require('../utils/email/emailService');
+const {emailService} = require('../utils/email/emailService');
 const httpStatus = require('http-status');
 const moment = require('moment');
 const { v4: uuidv4 } = require('uuid');
