@@ -47,42 +47,50 @@ const serviceController = {
    * @param {Object} res - Express response object
    * @returns {Promise<Object>} Response with new service data or error
    */
+// service.controller.js
+// service.controller.js
   createService: async (req, res) => {
     try {
-      const { title, description, category, services } = req.body;
-      
+      const { title, description, category, services, subservices } = req.body;
+
       if (!title || !description || !category) {
         return res.status(400).json({
           success: false,
           error: 'Title, description, and category are required'
         });
       }
-      
+
       const serviceData = {
         title,
         description,
         category,
-        services: services ? 
-          (Array.isArray(services) ? services : [services]) : 
-          [],
-        createdBy: req.user._id
+        services: services ?
+            (Array.isArray(services) ? services : [services]) :
+            [],
+        subservices: []
       };
-      
+
+      if (subservices) {
+        serviceData.subservices = typeof subservices === 'string'
+            ? JSON.parse(subservices)
+            : subservices;
+      }
+
       const result = await serviceService.createService(serviceData, req.files);
-      
+
       if (!result.success) {
         return res.status(400).json(result);
       }
-      
+
       res.status(201).json(result);
     } catch (error) {
+      console.error(error);
       res.status(500).json({
         success: false,
         error: 'Server error'
       });
     }
   },
-  
   /**
    * Get all services
    * @async
@@ -150,31 +158,53 @@ const serviceController = {
    */
   updateService: async (req, res) => {
     try {
-      // Process services array if provided
+      // Parse services
       if (req.body.services && !Array.isArray(req.body.services)) {
         req.body.services = [req.body.services];
       }
-      
+
+      // Parse subservices if sent as JSON string
+      if (req.body.subservices) {
+        req.body.subservices = typeof req.body.subservices === 'string'
+            ? JSON.parse(req.body.subservices)
+            : req.body.subservices;
+      }
+
       const result = await serviceService.updateService(
-        req.params.id,
-        req.body,
-        req.files,
-        req.user._id
+          req.params.id,
+          req.body,
+          req.files,
+          // req.user._id
       );
-      
+
       if (!result.success) {
         return res.status(result.error === 'Service not found' ? 404 : 400).json(result);
       }
-      
+
       res.status(200).json(result);
     } catch (error) {
+      console.error('Update Error:', error);
+      res.status(500).json({ success: false, error: 'Server error' });
+    }
+  },
+
+  getServiceBysubId: async (req, res) => {
+    try {
+      const result = await serviceService.getServiceById(req.params.id);
+      console.log("=====result====>",result)
+      if (!result.success) {
+        return res.status(404).json(result);
+      }
+
+      res.status(200).json(result);
+    } catch (error) {
+      console.error('Error in controller:', error);
       res.status(500).json({
         success: false,
         error: 'Server error'
       });
     }
   },
-  
   /**
    * Delete a service
    * @async

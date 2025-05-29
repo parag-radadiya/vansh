@@ -113,9 +113,8 @@ const LoanApplicationSchema = new mongoose.Schema({
     match: [/^\d{6}$/, 'Please provide a valid 6-digit pincode']
   },
   loanAmount: {
-    type: Number,
+    type: String,
     required: [true, 'Please specify the loan amount'],
-    min: [1000, 'Loan amount must be at least ₹1,000']
   },
   phoneNumber: {
     type: String,

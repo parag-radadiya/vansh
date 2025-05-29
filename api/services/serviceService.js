@@ -21,6 +21,7 @@ class ServiceService {
    * @param {Object} [files] - Uploaded files
    * @returns {Promise<Object>} Object with success status and service data or error
    */
+// service.service.js
   async createService(serviceData, files = {}) {
     try {
       const service = new Service({
@@ -28,10 +29,11 @@ class ServiceService {
         description: serviceData.description,
         category: serviceData.category,
         services: serviceData.services || [],
-        createdBy: serviceData.createdBy
+        createdBy: serviceData.createdBy,
+        subservices: [] // populate below
       });
-      
-      // Process icon if uploaded
+
+      // Process main icon
       if (files.icon && files.icon[0]) {
         const iconFile = files.icon[0];
         const iconResult = await cloudinaryUploader.uploadImage(iconFile.path, 'services/icons');
@@ -40,13 +42,38 @@ class ServiceService {
             url: iconResult.url,
             publicId: iconResult.publicId
           };
-          // Clean up uploaded file
           await unlinkAsync(iconFile.path);
         }
       }
-      
+
+      // Handle subservices if any
+      if (Array.isArray(serviceData.subservices)) {
+        for (let i = 0; i < serviceData.subservices.length; i++) {
+          const sub = serviceData.subservices[i];
+
+          let imgUrl = '', imgPublicId = '';
+          const subFile = files[`subservices[${i}][img]`] && files[`subservices[${i}][img]`][0];
+
+          if (subFile) {
+            const uploadResult = await cloudinaryUploader.uploadImage(subFile.path, 'services/subservices');
+            if (uploadResult.success) {
+              imgUrl = uploadResult.url;
+              imgPublicId = uploadResult.publicId;
+              await unlinkAsync(subFile.path);
+            }
+          }
+
+          service.subservices.push({
+            title: sub.title,
+            des: sub.des,
+            img: imgUrl,
+            servicefaq: sub.servicefaq || []
+          });
+        }
+      }
+
       await service.save();
-      
+
       return {
         success: true,
         data: service
@@ -59,6 +86,7 @@ class ServiceService {
       };
     }
   }
+
 
   /**
    * Get all service entries
@@ -110,6 +138,32 @@ class ServiceService {
     }
   }
 
+  async getSubserviceById(subserviceId) {
+    try {
+      // Find the service document that contains this subservice by subservice _id
+      const service = await Service.findOne({ 'subservices._id': subserviceId }, { 'subservices.$': 1 });
+
+      if (!service || !service.subservices || service.subservices.length === 0) {
+        return {
+          success: false,
+          error: 'Subservice not found'
+        };
+      }
+
+      // service.subservices[0] will contain the matched subservice
+      return {
+        success: true,
+        data: service.subservices[0]
+      };
+    } catch (error) {
+      console.error('Error fetching subservice:', error);
+      return {
+        success: false,
+        error: 'Invalid subservice ID or server error'
+      };
+    }
+  }
+
   /**
    * Update a service entry
    * @async
@@ -123,63 +177,83 @@ class ServiceService {
    * @param {string} userId - ID of the user performing the update
    * @returns {Promise<Object>} Object with success status and updated service data or error
    */
-  async updateService(serviceId, updateData, files = {}, userId) {
+  async updateService(serviceId, serviceData, files = {}) {
     try {
       const service = await Service.findById(serviceId);
-      
       if (!service) {
-        return {
-          success: false,
-          error: 'Service not found'
-        };
+        return { success: false, error: 'Service not found' };
       }
-      
-      // Check ownership
-      if (service.createdBy.toString() !== userId) {
-        return {
-          success: false,
-          error: 'Not authorized to update this service'
-        };
+
+      // Update base fields if provided
+      if (serviceData.title) service.title = serviceData.title;
+      if (serviceData.description) service.description = serviceData.description;
+      if (serviceData.category) service.category = serviceData.category;
+      if (serviceData.services) {
+        service.services = Array.isArray(serviceData.services)
+            ? serviceData.services
+            : [serviceData.services];
       }
-      
-      // Update text fields if provided
-      if (updateData.title) service.title = updateData.title;
-      if (updateData.description) service.description = updateData.description;
-      if (updateData.category) service.category = updateData.category;
-      if (updateData.services) service.services = updateData.services;
-      
-      // Update icon if uploaded
+
+      // Handle main icon update
       if (files.icon && files.icon[0]) {
-        // Delete old icon if exists
-        if (service.icon && service.icon.publicId) {
-          await cloudinaryUploader.deleteResource(service.icon.publicId);
-        }
-        
         const iconFile = files.icon[0];
+        // Optional: delete old icon from Cloudinary here if needed
         const iconResult = await cloudinaryUploader.uploadImage(iconFile.path, 'services/icons');
         if (iconResult.success) {
           service.icon = {
             url: iconResult.url,
             publicId: iconResult.publicId
           };
-          // Clean up uploaded file
           await unlinkAsync(iconFile.path);
         }
       }
-      
+
+      // Replace subservices entirely if provided
+      if (Array.isArray(serviceData.subservices)) {
+        service.subservices = []; // clear old subservices
+
+        for (let i = 0; i < serviceData.subservices.length; i++) {
+          const sub = serviceData.subservices[i];
+
+          let imgUrl = '';
+          const subFile = files[`subservices[${i}][img]`] && files[`subservices[${i}][img]`][0];
+
+          if (subFile) {
+            const uploadResult = await cloudinaryUploader.uploadImage(subFile.path, 'services/subservices');
+            if (uploadResult.success) {
+              imgUrl = uploadResult.url;
+              await unlinkAsync(subFile.path);
+            }
+          }
+
+          service.subservices.push({
+            title: sub.title,
+            des: sub.des,
+            overview: sub.overview,
+            documentsRequired: sub.documentsRequired,
+            eligibility: sub.eligibility,
+            interestRates: sub.interestRates,
+            img: imgUrl,
+            servicefaq: sub.servicefaq || []
+          });
+        }
+      }
+
       await service.save();
-      
+
       return {
         success: true,
         data: service
       };
     } catch (error) {
+      console.error('Error updating service:', error);
       return {
         success: false,
         error: error.message
       };
     }
   }
+
 
   /**
    * Delete a service entry

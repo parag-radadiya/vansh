@@ -121,9 +121,18 @@ router.get('/:id', serviceController.getServiceById);
  *       500:
  *         description: Server error
  */
-router.post('/', auth, upload.fields([
-  { name: 'icon', maxCount: 1 }
-]), serviceController.createService);
+router.post(
+    '/',
+    upload.fields([
+      { name: 'icon', maxCount: 1 },
+      { name: 'subservices[0][img]', maxCount: 1 },
+      { name: 'subservices[1][img]', maxCount: 1 },
+      { name: 'subservices[2][img]', maxCount: 1 },
+      { name: 'subservices[3][img]', maxCount: 1 },
+      { name: 'subservices[4][img]', maxCount: 1 },
+    ]),
+    serviceController.createService
+);
 
 /**
  * @swagger
@@ -181,8 +190,14 @@ router.post('/', auth, upload.fields([
  *       500:
  *         description: Server error
  */
-router.put('/:id', auth, upload.fields([
-  { name: 'icon', maxCount: 1 }
+router.get('/subservices/:id', serviceController.getServiceBysubId);
+router.put('/:id', upload.fields([
+  { name: 'icon', maxCount: 1 },
+  { name: 'subservices[0][img]', maxCount: 1 },
+  { name: 'subservices[1][img]', maxCount: 1 },
+  { name: 'subservices[2][img]', maxCount: 1 },
+  { name: 'subservices[3][img]', maxCount: 1 },
+  { name: 'subservices[4][img]', maxCount: 1 },
 ]), serviceController.updateService);
 
 /**
@@ -222,5 +237,8 @@ router.put('/:id', auth, upload.fields([
  *         description: Server error
  */
 router.delete('/:id', auth, serviceController.deleteService);
+
+
+
 
 module.exports = router;
