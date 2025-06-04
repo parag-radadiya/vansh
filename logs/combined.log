@@ -627,3 +627,15 @@
 {"level":"info","message":"POST /api/services 201 442 - 3293.431 ms - {\"title\":\"My Service\",\"description\":\"This is a great service.\",\"category\":\"Legal\",\"services\":[\"Advice\",\"Consult\"]}","timestamp":"2025-05-29 16:41:59"}
 {"level":"info","message":"PUT /api/services/683840fc9749b3ee7435c411 200 870 - 550.137 ms - {\"services\":[\"Consult1\"],\"subservices\":[{\"title\":\"Sub A\",\"des\":\"Sub A desc\",\"overview\":\"Overview A\",\"documentsRequired\":\"Doc A\",\"eligibility\":\"Anyone\",\"interestRates\":\"5%\",\"servicefaq\":[{\"que\":\"Q1?\",\"ans\":\"A1\"}],\"img\":\"\"},{\"title\":\"Sub B\",\"des\":\"Sub B desc\",\"overview\":\"Overview B\",\"documentsRequired\":\"Doc B\",\"eligibility\":\"None\",\"interestRates\":\"6%\",\"img\":\"\"}]}","timestamp":"2025-05-29 16:43:57"}
 {"level":"info","message":"GET /api/services 200 - - 270.960 ms - {}","timestamp":"2025-05-29 16:44:39"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-04 15:13:52"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-04 15:13:53"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-04 15:13:53"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-06-04 15:13:56"}
+{"level":"info","message":"POST /api/faqs 201 236 - 530.488 ms - {\"question\":\"<string>\",\"ans\":\"<string>\",\"status\":\"true\",\"category\":\"dbdd\"}","timestamp":"2025-06-04 15:14:32"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-04 15:15:22"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-04 15:15:23"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-04 15:15:23"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-06-04 15:15:26"}
+{"level":"info","message":"POST /api/faqs 201 254 - 600.225 ms - {\"question\":\"<string>\",\"ans\":\"<string>\",\"status\":\"true\",\"category\":\"dbdd\"}","timestamp":"2025-06-04 15:15:31"}
+{"level":"info","message":"GET /api/faqs 200 - - 520.662 ms - {}","timestamp":"2025-06-04 15:15:47"}
+{"level":"info","message":"GET /api/faqs/684015bbe0631f366d38ffc4 200 292 - 490.551 ms - {}","timestamp":"2025-06-04 15:16:11"}
