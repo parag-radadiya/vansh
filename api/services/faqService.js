@@ -21,7 +21,8 @@ class FaqService {
         question: faqData.question,
         ans: faqData.ans,
         status: faqData.status !== undefined ? faqData.status : true,
-        createdBy: faqData.createdBy
+        createdBy: faqData.createdBy,
+        category:faqData.faqData
       });
       
       await faq.save();

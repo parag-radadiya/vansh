@@ -17,7 +17,7 @@ const faqController = {
    */
   createFaq: async (req, res) => {
     try {
-      const { question, ans, status } = req.body;
+      const { question, ans, status ,category} = req.body;
       
       if (!question) {
         return res.status(400).json({
@@ -29,6 +29,7 @@ const faqController = {
       const faqData = {
         question,
         ans,
+        category,
         status: status !== undefined ? status : true,
         createdBy: req.user._id
       };
