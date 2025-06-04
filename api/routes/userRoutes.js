@@ -1,7 +1,6 @@
 const express = require('express');
 const userController = require('../controllers/userController');
 const authenticate = require('../middleware/auth');
-
 const router = express.Router();
 
 /**
@@ -262,7 +261,7 @@ router.post('/logout', userController.logout);
  *       401:
  *         description: Unauthorized - Invalid or expired token
  */
-router.get('/profile', userController.getProfile);
+router.get('/profile', authenticate,userController.getProfile);
 
 /**
  * @swagger
@@ -293,6 +292,6 @@ router.get('/profile', userController.getProfile);
  *       401:
  *         description: Unauthorized - Invalid or expired token
  */
-router.patch('/profile', authenticate, userController.updateProfile);
+router.patch('/profile',authenticate,  userController.updateProfile);
 
 module.exports = router;
