@@ -145,7 +145,8 @@ class FaqService {
       if (updateData.question !== undefined) faq.question = updateData.question;
       if (updateData.ans !== undefined) faq.ans = updateData.ans;
       if (updateData.status !== undefined) faq.status = updateData.status;
-      
+      if (updateData.category !== undefined) faq.category = updateData.category;
+
       await faq.save();
       
       return {
