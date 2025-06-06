@@ -17,38 +17,52 @@ const faqController = {
    */
   createFaq: async (req, res) => {
     try {
-      const { question, ans, status ,category} = req.body;
-      
-      if (!question) {
-        return res.status(400).json({
-          success: false,
-          error: 'Question is required'
-        });
+      const faqs = Array.isArray(req.body) ? req.body : [req.body];
+
+      // Validate input
+      for (const faq of faqs) {
+        if (!faq.question) {
+          return res.status(400).json({
+            success: false,
+            error: 'Each FAQ must have a question'
+          });
+        }
       }
-      
-      const faqData = {
-        question,
-        ans,
-        category,
-        status: status !== undefined ? status : true,
+
+      // Build FAQ data with user ID
+      const faqDataArray = faqs.map(faq => ({
+        question: faq.question,
+        ans: faq.ans || '',
+        category: faq.category || '',
+        status: faq.status !== undefined ? faq.status : true,
         createdBy: req.user._id
-      };
-      
-      const result = await faqService.createFaq(faqData);
-      
-      if (!result.success) {
-        return res.status(400).json(result);
+      }));
+
+      // Save all FAQs
+      const createdFaqs = [];
+      for (const faqData of faqDataArray) {
+        const result = await faqService.createFaq(faqData);
+        if (result.success) {
+          createdFaqs.push(result.data);
+        } else {
+          return res.status(400).json(result); // Fail early if one fails
+        }
       }
-      
-      res.status(201).json(result);
+
+      res.status(201).json({
+        success: true,
+        data: createdFaqs
+      });
     } catch (error) {
+      console.error('FAQ creation error:', error);
       res.status(500).json({
         success: false,
         error: 'Server error'
       });
     }
   },
-  
+
+
   /**
    * Get all FAQs
    * @async
