@@ -180,7 +180,7 @@ class FaqService {
       }
       
       // Check ownership or admin privileges can be added here
-      if (faq.createdBy.toString() !== userId) {
+      if (faq.createdBy.toString() !== userId.toString()) {
         return {
           success: false,
           error: 'Not authorized to delete this FAQ'
