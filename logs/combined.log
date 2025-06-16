@@ -691,3 +691,11 @@
 {"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-06-16 17:44:00"}
 {"level":"info","message":"POST /api/users/login 200 681 - 703.709 ms - {\"email\":\"user@yopmail.com\",\"password\":\"test123\"}","timestamp":"2025-06-16 17:44:06"}
 {"level":"info","message":"DELETE /api/faqs/684eb0bd804b9a79daa5d9a2 200 53 - 921.626 ms - {}","timestamp":"2025-06-16 17:44:16"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-16 17:45:19"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-16 17:45:19"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-16 17:45:19"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-06-16 17:45:23"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-16 22:55:19"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-16 22:55:20"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-16 22:55:20"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-06-16 22:55:24"}
