@@ -151,7 +151,34 @@ const CareerApplicationSchema = new mongoose.Schema({
     type: String,
     trim: true,
     maxlength: [1000, 'Notes cannot be more than 1000 characters']
-  }
+  },
+  department: {
+    type: String,
+  },
+  title: {
+    type: String,
+  },
+  location: {
+    type: String,
+  },
+  jobType: {
+    type: String,
+  },
+  experienceLevel: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
+  responsibilities: {
+    type: String,
+  },
+  requirements: {
+    type: String,
+  },
+  skills: {
+    type: String,
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model('CareerApplication', CareerApplicationSchema);

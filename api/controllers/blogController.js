@@ -1,6 +1,8 @@
 const blogService = require('../services/blogService');
 const multer = require('multer');
 const path = require('path');
+const httpStatus = require("http-status");
+const cloudinary = require("cloudinary");
 
 // Configure multer storage
 const storage = multer.diskStorage({
@@ -47,33 +49,47 @@ const blogController = {
    * @param {Object} res - Express response object
    * @returns {Promise<Object>} Response with blog data or error
    */
+
   createBlog: async (req, res) => {
     try {
       const { title, category, description, publishFlag, tags } = req.body;
-      
+
       if (!title || !category || !description) {
         return res.status(400).json({
           success: false,
           error: 'Title, category, and description are required'
         });
       }
-      
+
       const blogData = {
         title,
         category,
         description,
-        publishFlag: publishFlag === 'true' || publishFlag === true,
-        tags: tags ? tags.split(',').map(tag => tag.trim()) : [],
-        createdBy: req.user._id
+        publishFlag,
+        tags: typeof tags === 'string' ? tags.split(',') : tags,
       };
-      
-      const result = await blogService.createBlog(blogData, req.files);
-      
-      if (!result.success) {
-        return res.status(400).json(result);
+
+      // Process multiple image uploads
+      blogData.images = [];
+      if (req.files && req.files.image && req.files.image.length > 0) {
+        for (const file of req.files.image) {
+          const result = await cloudinary.uploader.upload(file.path, {
+            folder: 'blogs'
+          });
+          blogData.images.push({
+            url: result.secure_url,
+            publicId: result.public_id
+          });
+        }
       }
-      
-      res.status(201).json(result);
+
+      const result = await blogService.createBlog(blogData, req.user.id);
+
+      if (!result.success) {
+        return res.status(result.statusCode || 400).json(result);
+      }
+
+      return res.status(201).json(result);
     } catch (error) {
       console.error('Error creating blog:', error);
       res.status(500).json({
@@ -82,7 +98,8 @@ const blogController = {
       });
     }
   },
-  
+
+
   /**
    * Get all blogs
    * @async
@@ -187,30 +204,43 @@ const blogController = {
    */
   updateBlog: async (req, res) => {
     try {
-      // Preprocess publishFlag if provided
-      if (req.body.publishFlag !== undefined) {
-        req.body.publishFlag = req.body.publishFlag === 'true' || req.body.publishFlag === true;
+      const { title, category, description, publishFlag, tags } = req.body;
+      const updateData = {};
+
+      if (title) updateData.title = title;
+      if (category) updateData.category = category;
+      if (description) updateData.description = description;
+      if (publishFlag !== undefined) updateData.publishFlag = publishFlag;
+      if (tags) updateData.tags = typeof tags === 'string' ? tags.split(',') : tags;
+
+      // Handle new image uploads
+      if (req.files && req.files.image && req.files.image.length > 0) {
+        updateData.images = [];
+
+        for (const file of req.files.image) {
+          const result = await cloudinary.uploader.upload(file.path, {
+            folder: 'blogs'
+          });
+
+          updateData.images.push({
+            url: result.secure_url,
+            publicId: result.public_id
+          });
+        }
       }
-      
-      // Add createdBy to verify ownership
-      req.body.createdBy = req.user._id;
-      
-      const result = await blogService.updateBlog(
-        req.params.id,
-        req.body,
-        req.files,
-        req.user._id
-      );
-      
+
+      const result = await blogService.updateBlog(req.params.id, updateData);
+
       if (!result.success) {
-        return res.status(result.error === 'Blog not found' ? 404 : 400).json(result);
+        return res.status(result.statusCode || 400).json(result);
       }
-      
-      res.status(200).json(result);
+
+      return res.status(200).json(result);
     } catch (error) {
-      res.status(500).json({
+      console.error(`Error in updateBlog: ${error.message}`);
+      return res.status(500).json({
         success: false,
-        error: 'Server error'
+        error: 'Server error during blog update'
       });
     }
   },

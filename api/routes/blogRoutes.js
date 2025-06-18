@@ -283,7 +283,7 @@ router.get('/:id', blogController.getBlogById);
  *         description: Server error
  */
 router.post('/', auth, upload.fields([
-  { name: 'image', maxCount: 1 }
+  { name: 'image', maxCount: 5 }
 ]), blogController.createBlog);
 
 /**
@@ -344,7 +344,7 @@ router.post('/', auth, upload.fields([
  *         description: Server error
  */
 router.put('/:id', auth, upload.fields([
-  { name: 'image', maxCount: 1 }
+  { name: 'image', maxCount: 5 }
 ]), blogController.updateBlog);
 
 /**

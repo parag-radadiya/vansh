@@ -1,5 +1,8 @@
 const Blog = require('../models/Blog');
 const cloudinaryUploader = require('../config/cloudinary/uploader');
+const Expert = require("../models/Expert");
+const logger = require("../utils/logger/logger");
+const httpStatus = require("http-status");
 
 /**
  * Service for blog operations
@@ -13,52 +16,27 @@ const blogService = {
    * @param {Object} blogData - Blog post data
    * @param {Object} imageFile - Image file for blog
    * @returns {Promise<Object>} Response with blog or error
+   * @param {string} userId
    */
-  createBlog: async (blogData, imageFile) => {
+  createBlog: async (blogData, userId) => {
     try {
-      // Upload image if provided
-      let imageUrl = null;
-      if (imageFile) {
-        const uploadResult = await cloudinaryUploader.uploadImage(
-          imageFile, 
-          'blogs',
-          `blog_${Date.now()}`
-        );
-        
-        if (!uploadResult.success) {
-          return {
-            success: false,
-            error: 'Failed to upload blog image'
-          };
-        }
-        
-        imageUrl = uploadResult.url;
-      }
-      
-      // Create new blog
-      const blog = new Blog({
-        title: blogData.title,
-        content: blogData.content,
-        excerpt: blogData.excerpt || blogData.content.substring(0, 150) + '...',
-        author: blogData.author,
-        tags: blogData.tags?.split(',').map(tag => tag.trim()) || [],
-        category: blogData.category,
-        image: imageUrl,
-        isPublished: blogData.isPublished === 'true' || blogData.isPublished === true
+      const blog = await Blog.create({
+        ...blogData,
+        createdBy: userId
       });
-      
-      await blog.save();
-      
+
       return {
         success: true,
-        data: blog,
-        message: 'Blog created successfully'
+        data: blog
       };
     } catch (error) {
-      console.error('Blog creation error:', error);
+      logger.error(`Error creating blog: ${error.message}`);
       return {
         success: false,
-        error: error.message || 'Failed to create blog'
+        error: error.message,
+        statusCode: error.name === 'ValidationError'
+            ? httpStatus.BAD_REQUEST
+            : httpStatus.INTERNAL_SERVER_ERROR
       };
     }
   },
@@ -72,63 +50,34 @@ const blogService = {
    * @param {Object} imageFile - New image file (optional)
    * @returns {Promise<Object>} Response with updated blog or error
    */
-  updateBlog: async (id, blogData, imageFile) => {
+  async updateBlog(id, updateData) {
     try {
-      // Check if blog exists
-      const blog = await Blog.findById(id);
-      
+      const blog = await Blog.findByIdAndUpdate(id, updateData, {
+        new: true,
+        runValidators: true
+      });
+
       if (!blog) {
         return {
           success: false,
-          error: 'Blog not found'
+          error: 'Blog not found',
+          statusCode: httpStatus.NOT_FOUND
         };
       }
-      
-      // Upload new image if provided
-      if (imageFile) {
-        const uploadResult = await cloudinaryUploader.uploadImage(
-          imageFile, 
-          'blogs',
-          `blog_${id}_${Date.now()}`
-        );
-        
-        if (!uploadResult.success) {
-          return {
-            success: false,
-            error: 'Failed to upload blog image'
-          };
-        }
-        
-        blogData.image = uploadResult.url;
-      }
-      
-      // Process tags if provided as string
-      if (blogData.tags && typeof blogData.tags === 'string') {
-        blogData.tags = blogData.tags.split(',').map(tag => tag.trim());
-      }
-      
-      // Handle isPublished if provided as string
-      if (blogData.isPublished !== undefined) {
-        blogData.isPublished = blogData.isPublished === 'true' || blogData.isPublished === true;
-      }
-      
-      // Update blog
-      const updatedBlog = await Blog.findByIdAndUpdate(
-        id,
-        { $set: blogData },
-        { new: true, runValidators: true }
-      );
-      
+
       return {
         success: true,
-        data: updatedBlog,
-        message: 'Blog updated successfully'
+        data: blog
       };
     } catch (error) {
-      console.error('Blog update error:', error);
+      logger.error(`Error updating blog: ${error.message}`);
       return {
         success: false,
-        error: error.message || 'Failed to update blog'
+        error: error.message,
+        statusCode:
+            error.name === 'ValidationError'
+                ? httpStatus.BAD_REQUEST
+                : httpStatus.INTERNAL_SERVER_ERROR
       };
     }
   },
