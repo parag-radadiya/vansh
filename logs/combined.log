@@ -886,3 +886,50 @@
 {"level":"info","message":"PUT /api/blogs/685271c3c9d3836fb26798d6 401 64 - 1.757 ms - {}","timestamp":"2025-06-18 13:29:52"}
 {"level":"info","message":"POST /api/users/login 200 681 - 597.102 ms - {\"email\":\"user@yopmail.com\",\"password\":\"test123\"}","timestamp":"2025-06-18 13:29:59"}
 {"level":"info","message":"PUT /api/blogs/685271c3c9d3836fb26798d6 200 445 - 3092.675 ms - {\"title\":\"wrr\",\"category\":\"ewff\",\"description\":\"ef\",\"publishFlag\":\"false\",\"tags\":\"eeee\"}","timestamp":"2025-06-18 13:30:15"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 18:53:56"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 18:53:57"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 18:53:57"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-06-23 18:54:00"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 18:58:41"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 18:58:42"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 18:58:42"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-06-23 18:58:45"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 19:00:47"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 19:00:47"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 19:00:47"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-02.s5srhlv.mongodb.net","timestamp":"2025-06-23 19:00:50"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 19:17:44"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 19:17:45"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 19:17:45"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-06-23 19:17:51"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 19:18:28"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 19:18:29"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 19:18:29"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-02.s5srhlv.mongodb.net","timestamp":"2025-06-23 19:18:32"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 19:19:40"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 19:19:40"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 19:19:40"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-02.s5srhlv.mongodb.net","timestamp":"2025-06-23 19:19:44"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 19:19:49"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 19:19:50"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 19:19:50"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-01.s5srhlv.mongodb.net","timestamp":"2025-06-23 19:19:53"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 19:20:03"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 19:20:03"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 19:20:03"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-02.s5srhlv.mongodb.net","timestamp":"2025-06-23 19:20:05"}
+{"level":"error","message":"API Not Found: POST /api/applications","timestamp":"2025-06-23 19:20:49"}
+{"level":"info","message":"POST /api/applications 404 121 - 4.616 ms - {}","timestamp":"2025-06-23 19:20:49"}
+{"level":"error","message":"Invalid file type. Only PDF, DOC, and DOCX files are allowed. - POST /api/career-applications","timestamp":"2025-06-23 19:21:30"}
+{"level":"error","message":"Error: Invalid file type. Only PDF, DOC, and DOCX files are allowed.\n    at fileFilter (C:\\Users\\KULDIP\\vansh\\api\\controllers\\careerApplicationController.js:38:8)\n    at wrappedFileFilter (C:\\Users\\KULDIP\\vansh\\node_modules\\multer\\index.js:44:7)\n    at Multipart.<anonymous> (C:\\Users\\KULDIP\\vansh\\node_modules\\multer\\lib\\make-middleware.js:109:7)\n    at Multipart.emit (node:events:517:28)\n    at HeaderParser.cb (C:\\Users\\KULDIP\\vansh\\node_modules\\busboy\\lib\\types\\multipart.js:358:14)\n    at HeaderParser.push (C:\\Users\\KULDIP\\vansh\\node_modules\\busboy\\lib\\types\\multipart.js:162:20)\n    at SBMH.ssCb [as _cb] (C:\\Users\\KULDIP\\vansh\\node_modules\\busboy\\lib\\types\\multipart.js:394:37)\n    at feed (C:\\Users\\KULDIP\\vansh\\node_modules\\streamsearch\\lib\\sbmh.js:200:10)\n    at SBMH.push (C:\\Users\\KULDIP\\vansh\\node_modules\\streamsearch\\lib\\sbmh.js:104:16)\n    at Multipart._write (C:\\Users\\KULDIP\\vansh\\node_modules\\busboy\\lib\\types\\multipart.js:567:19)","timestamp":"2025-06-23 19:21:30"}
+{"level":"info","message":"POST /api/career-applications 500 - - 7.830 ms - {\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john.doe@example.com\",\"state\":\"Gujarat\",\"city\":\"Surat\",\"role\":\"React Developer\",\"phoneNumber\":\"9876543210\",\"department\":\"Development\",\"title\":\"Frontend Engineer\",\"location\":\"Remote\",\"jobType\":\"Full-time\",\"experienceLevel\":\"Mid-level\",\"salaryMin\":\"300000\",\"salaryMax\":\"500000\",\"currency\":\"INR\",\"openings\":\"3\",\"deadline\":\"2025-07-01\"}","timestamp":"2025-06-23 19:21:30"}
+{"level":"info","message":"POST /api/career-applications 201 452 - 11423.051 ms - {\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john.doe@example.com\",\"state\":\"Gujarat\",\"city\":\"Surat\",\"role\":\"React Developer\",\"phoneNumber\":\"9876543210\",\"department\":\"Development\",\"title\":\"Frontend Engineer\",\"location\":\"Remote\",\"jobType\":\"Full-time\",\"experienceLevel\":\"Mid-level\",\"salaryMin\":\"300000\",\"salaryMax\":\"500000\",\"currency\":\"INR\",\"openings\":\"3\",\"deadline\":\"2025-07-01\"}","timestamp":"2025-06-23 19:22:00"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 19:23:10"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 19:23:10"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 19:23:10"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-06-23 19:23:13"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 19:23:52"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 19:23:53"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 19:23:53"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-02.s5srhlv.mongodb.net","timestamp":"2025-06-23 19:23:56"}
+{"level":"info","message":"POST /api/career-applications 201 689 - 10206.951 ms - {\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john.doe@example.com\",\"state\":\"Gujarat\",\"city\":\"Surat\",\"role\":\"React Developer\",\"phoneNumber\":\"9876543210\",\"department\":\"Development\",\"title\":\"Frontend Engineer\",\"location\":\"Remote\",\"jobType\":\"Full-time\",\"experienceLevel\":\"Mid-level\",\"salaryMin\":\"300000\",\"salaryMax\":\"500000\",\"currency\":\"INR\",\"openings\":\"3\",\"deadline\":\"2025-07-01\"}","timestamp":"2025-06-23 19:24:18"}

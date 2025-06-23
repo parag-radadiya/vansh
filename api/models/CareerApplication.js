@@ -179,6 +179,21 @@ const CareerApplicationSchema = new mongoose.Schema({
   skills: {
     type: String,
   },
+  salaryRange: {
+    min: Number,
+    max: Number
+  },
+  currency: String,
+  openings: Number,
+  postedBy: {
+    adminId: String,
+    name: String,
+    email: String
+  },
+  applyLink: String,
+  status: String,
+  postedAt: Date,
+  deadline: Date,
 }, { timestamps: true });
 
 module.exports = mongoose.model('CareerApplication', CareerApplicationSchema);
