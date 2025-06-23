@@ -77,7 +77,11 @@ const loanApplicationController = {
         loanAmount,
         phoneNumber,
         businessType,
-        securityType
+        securityType,
+        businessName,
+        businessVintageYear,
+        factoryOwnership,
+        residentOwnership,
       } = req.body;
       
       // Basic validation
@@ -104,7 +108,11 @@ const loanApplicationController = {
         loanAmount: Number(loanAmount),
         phoneNumber,
         businessType,
-        securityType
+        securityType,
+        businessName,
+        businessVintageYear,
+        factoryOwnership,
+        residentOwnership,
       };
       
       const result = await loanApplicationService.createApplication(applicationData);

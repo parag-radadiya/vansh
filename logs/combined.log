@@ -933,3 +933,16 @@
 {"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 19:23:53"}
 {"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-02.s5srhlv.mongodb.net","timestamp":"2025-06-23 19:23:56"}
 {"level":"info","message":"POST /api/career-applications 201 689 - 10206.951 ms - {\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john.doe@example.com\",\"state\":\"Gujarat\",\"city\":\"Surat\",\"role\":\"React Developer\",\"phoneNumber\":\"9876543210\",\"department\":\"Development\",\"title\":\"Frontend Engineer\",\"location\":\"Remote\",\"jobType\":\"Full-time\",\"experienceLevel\":\"Mid-level\",\"salaryMin\":\"300000\",\"salaryMax\":\"500000\",\"currency\":\"INR\",\"openings\":\"3\",\"deadline\":\"2025-07-01\"}","timestamp":"2025-06-23 19:24:18"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 19:28:41"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 19:28:42"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 19:28:42"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-02.s5srhlv.mongodb.net","timestamp":"2025-06-23 19:28:47"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 19:30:40"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 19:30:40"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 19:30:40"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-02.s5srhlv.mongodb.net","timestamp":"2025-06-23 19:30:43"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-06-23 19:31:02"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-06-23 19:31:03"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-06-23 19:31:03"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-01.s5srhlv.mongodb.net","timestamp":"2025-06-23 19:31:06"}
+{"level":"info","message":"POST /api/loan-applications 201 488 - 7952.428 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"Ravi Sharma\",\"email\":\"ravi.sharma@example.com\",\"pincode\":\"380001\",\"loanAmount\":\"500000\",\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\",\"businessName\":\"Sharma Electronics\",\"businessVintageYear\":\"2015\",\"factoryOwnership\":\"Owned\",\"residentOwnership\":\"Rented\"}","timestamp":"2025-06-23 19:32:57"}

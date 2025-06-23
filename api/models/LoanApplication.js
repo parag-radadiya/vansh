@@ -134,6 +134,26 @@ const LoanApplicationSchema = new mongoose.Schema({
     trim: true,
     maxlength: [100, 'Security type cannot be more than 100 characters']
   },
+  businessName: {
+    type: String,
+    trim: true,
+    maxlength: [150, 'Business name cannot be more than 150 characters']
+  },
+  businessVintageYear: {
+    type: String,
+    trim: true,
+    match: [/^\d{4}$/, 'Please provide a valid 4-digit year']
+  },
+  factoryOwnership: {
+    type: String,
+    trim: true,
+    maxlength: [100, 'Factory ownership cannot be more than 100 characters']
+  },
+  residentOwnership: {
+    type: String,
+    trim: true,
+    maxlength: [100, 'Resident ownership cannot be more than 100 characters']
+  },
   status: {
     type: String,
     enum: ['pending', 'reviewing', 'approved', 'rejected'],
@@ -145,5 +165,4 @@ const LoanApplicationSchema = new mongoose.Schema({
     maxlength: [1000, 'Notes cannot be more than 1000 characters']
   }
 }, { timestamps: true });
-
 module.exports = mongoose.model('LoanApplication', LoanApplicationSchema);
