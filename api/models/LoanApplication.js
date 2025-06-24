@@ -141,18 +141,15 @@ const LoanApplicationSchema = new mongoose.Schema({
   },
   businessVintageYear: {
     type: String,
-    trim: true,
-    match: [/^\d{4}$/, 'Please provide a valid 4-digit year']
   },
   factoryOwnership: {
     type: String,
     trim: true,
-    maxlength: [100, 'Factory ownership cannot be more than 100 characters']
+
   },
   residentOwnership: {
     type: String,
     trim: true,
-    maxlength: [100, 'Resident ownership cannot be more than 100 characters']
   },
   status: {
     type: String,
