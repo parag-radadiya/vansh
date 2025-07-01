@@ -145,7 +145,6 @@ const LoanApplicationSchema = new mongoose.Schema({
   factoryOwnership: {
     type: String,
     trim: true,
-
   },
   residentOwnership: {
     type: String,

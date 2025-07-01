@@ -152,48 +152,6 @@ const CareerApplicationSchema = new mongoose.Schema({
     trim: true,
     maxlength: [1000, 'Notes cannot be more than 1000 characters']
   },
-  department: {
-    type: String,
-  },
-  title: {
-    type: String,
-  },
-  location: {
-    type: String,
-  },
-  jobType: {
-    type: String,
-  },
-  experienceLevel: {
-    type: String,
-  },
-  description: {
-    type: String,
-  },
-  responsibilities: {
-    type: String,
-  },
-  requirements: {
-    type: String,
-  },
-  skills: {
-    type: String,
-  },
-  salaryRange: {
-    min: Number,
-    max: Number
-  },
-  currency: String,
-  openings: Number,
-  postedBy: {
-    adminId: String,
-    name: String,
-    email: String
-  },
-  applyLink: String,
-  status: String,
-  postedAt: Date,
-  deadline: Date,
 }, { timestamps: true });
 
 module.exports = mongoose.model('CareerApplication', CareerApplicationSchema);

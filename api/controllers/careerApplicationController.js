@@ -121,22 +121,6 @@ const careerApplicationController = {
         city, 
         role, 
         phoneNumber,
-        department,
-        title,
-        location,
-        jobType,
-        experienceLevel,
-        description,
-        responsibilities,
-        requirements,
-        skills,
-        salaryMin,
-        salaryMax,
-        currency,
-        openings,
-        postedAt,
-        deadline,
-        applyLink,
         notes
       } = req.body;
       
@@ -168,32 +152,7 @@ const careerApplicationController = {
           url: req.file.path,
           publicId: req.file.filename
         },
-        notes,
-        department,
-        title,
-        location,
-        jobType,
-        experienceLevel,
-        description,
-        responsibilities,
-        requirements,
-        skills,
-        salaryRange: {
-          min: salaryMin,
-          max: salaryMax
-        },
-        currency,
-        openings,
-        applyLink,
-        postedAt,
-        deadline,
-        postedBy: req.user
-            ? {
-              adminId: req.user._id,
-              name: req.user.name,
-              email: req.user.email
-            }
-            : undefined
+        notes
       };
       
       const result = await careerApplicationService.createApplication(applicationData);

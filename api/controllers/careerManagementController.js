@@ -49,7 +49,23 @@ const careerManagementController = {
    */
   createCareerOpportunity: async (req, res) => {
     try {
-      const { category, role, description } = req.body;
+      const { category, role, description, department,
+        title,
+        location,
+        jobType,
+        experienceLevel,
+        responsibilities,
+        requirements,
+        skills,
+        salaryMin,
+        salaryMax,
+        currency,
+        openings,
+        postedAt,
+        deadline,
+        applyLink,
+        notes
+      } = req.body;
       
       if (!category || !role || !description) {
         return res.status(400).json({
@@ -61,8 +77,33 @@ const careerManagementController = {
       const careerData = {
         category,
         role,
+        createdBy: req.user._id,
+        notes,
+        department,
+        title,
+        location,
+        jobType,
+        experienceLevel,
         description,
-        createdBy: req.user._id
+        responsibilities,
+        requirements,
+        skills,
+        salaryRange: {
+          min: salaryMin,
+          max: salaryMax
+        },
+        currency,
+        openings,
+        applyLink,
+        postedAt,
+        deadline,
+        postedBy: req.user
+            ? {
+              adminId: req.user._id,
+              name: req.user.name,
+              email: req.user.email
+            }
+            : undefined
       };
       
       const result = await careerManagementService.createCareerOpportunity(careerData, req.files);

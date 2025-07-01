@@ -23,10 +23,7 @@ class CareerManagementService {
   async createCareerOpportunity(careerData, files = {}) {
     try {
       const career = new CareerManagement({
-        category: careerData.category,
-        role: careerData.role,
-        description: careerData.description,
-        createdBy: careerData.createdBy
+        ...careerData
       });
       
       // Process image if uploaded
@@ -132,7 +129,7 @@ class CareerManagementService {
       }
       
       // Check ownership
-      if (career.createdBy.toString() !== userId) {
+      if (career.createdBy.toString() !== userId.toString()) {
         return {
           success: false,
           error: 'Not authorized to update this career opportunity'
@@ -196,7 +193,7 @@ class CareerManagementService {
       }
       
       // Check ownership
-      if (career.createdBy.toString() !== userId) {
+      if (career.createdBy.toString() !== userId.toString()) {
         return {
           success: false,
           error: 'Not authorized to delete this career opportunity'
