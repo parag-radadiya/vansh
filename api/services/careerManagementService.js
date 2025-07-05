@@ -22,7 +22,8 @@ class CareerManagementService {
    */
   async createCareerOpportunity(careerData, files = {}) {
     try {
-      const career = new CareerManagement({
+      const career = new
+      ({
         ...careerData
       });
       
@@ -120,59 +121,63 @@ class CareerManagementService {
   async updateCareerOpportunity(careerId, updateData, files = {}, userId) {
     try {
       const career = await CareerManagement.findById(careerId);
-      
+
       if (!career) {
-        return {
-          success: false,
-          error: 'Career opportunity not found'
-        };
+        return { success: false, error: 'Career opportunity not found' };
       }
-      
-      // Check ownership
+
       if (career.createdBy.toString() !== userId.toString()) {
-        return {
-          success: false,
-          error: 'Not authorized to update this career opportunity'
-        };
+        return { success: false, error: 'Not authorized to update this career opportunity' };
       }
-      
-      // Update text fields if provided
-      if (updateData.category) career.category = updateData.category;
-      if (updateData.role) career.role = updateData.role;
-      if (updateData.description) career.description = updateData.description;
-      
-      // Update image if uploaded
+
+      // Scalar fields
+      const fieldsToUpdate = [
+        'category', 'role', 'description', 'department',
+        'title', 'location', 'jobType', 'experienceLevel',
+        'currency', 'openings', 'postedAt', 'deadline',
+        'applyLink', 'notes'
+      ];
+
+      fieldsToUpdate.forEach(field => {
+        if (updateData[field] !== undefined) {
+          career[field] = updateData[field];
+        }
+      });
+
+      // Salary fields (convert to number)
+      if (updateData.salaryMin !== undefined) {
+        career.salaryMin = Number(updateData.salaryMin);
+      }
+      if (updateData.salaryMax !== undefined) {
+        career.salaryMax = Number(updateData.salaryMax);
+      }
+
+      // Image update
       if (files.image && files.image[0]) {
-        // Delete old image if exists
-        if (career.image && career.image.publicId) {
+        if (career.image?.publicId) {
           await cloudinaryUploader.deleteResource(career.image.publicId);
         }
-        
+
         const imageFile = files.image[0];
         const imageResult = await cloudinaryUploader.uploadImage(imageFile.path, 'careers/images');
+
         if (imageResult.success) {
           career.image = {
             url: imageResult.url,
             publicId: imageResult.publicId
           };
-          // Clean up uploaded file
           await unlinkAsync(imageFile.path);
         }
       }
-      
+
       await career.save();
-      
-      return {
-        success: true,
-        data: career
-      };
+
+      return { success: true, data: career };
     } catch (error) {
-      return {
-        success: false,
-        error: error.message
-      };
+      return { success: false, error: error.message };
     }
   }
+
 
   /**
    * Delete a career opportunity
