@@ -23,7 +23,7 @@ class CareerManagementService {
   async createCareerOpportunity(careerData, files = {}) {
     try {
       const career = new
-      ({
+      CareerManagement({
         ...careerData
       });
       
