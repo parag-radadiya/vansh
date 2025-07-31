@@ -1074,3 +1074,108 @@
 {"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-02.s5srhlv.mongodb.net","timestamp":"2025-07-05 19:19:53"}
 {"level":"info","message":"POST /api/users/login 200 681 - 598.186 ms - {\"email\":\"user@yopmail.com\",\"password\":\"test123\"}","timestamp":"2025-07-05 19:20:03"}
 {"level":"info","message":"POST /api/careers 201 874 - 920.028 ms - {\"category\":\"Engineering\",\"role\":\"Backend Developer\",\"description\":\"Responsible for building APIs\",\"department\":\"Tech\",\"title\":\"Node.js Developer\",\"location\":\"Remote\",\"jobType\":\"Full-time\",\"experienceLevel\":\"MidSenior\",\"responsibilities\":\"[\\\"Write APIs\\\", \\\"Database design\\\"]\",\"requirements\":\"[\\\"3+ years experience\\\", \\\"Node.js\\\"]\",\"skills\":\"[\\\"Node.js\\\", \\\"MongoDB\\\", \\\"REST\\\"]\",\"salaryMin\":\"40000\",\"salaryMax\":\"60000\",\"currency\":\"INR\",\"openings\":\"3\",\"postedAt\":\"2025-07-01T10:00:00Z\",\"deadline\":\"2025-07-31T23:59:00Z\",\"applyLink\":\"https://yourcompany.com/apply\",\"notes\":\"Urgent requirement\",\"files\":\"\"}","timestamp":"2025-07-05 19:20:20"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 15:53:06"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 15:53:07"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 15:53:07"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 15:53:10"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:01:29"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:01:30"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:01:30"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:01:33"}
+{"level":"error","message":"Failed to send confirmation email: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-3209a84cf2dsm1758808a91.34 - gsmtp","timestamp":"2025-07-31 17:02:29"}
+{"level":"error","message":"Failed to send admin notification email: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 41be03b00d2f7-b422bae3036sm1325886a12.45 - gsmtp","timestamp":"2025-07-31 17:02:30"}
+{"level":"info","message":"POST /api/loan-applications 201 361 - 3331.695 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"John Doe\",\"email\":\"john.doe@example.com\",\"pincode\":\"380015\",\"loanAmount\":500000,\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\"}","timestamp":"2025-07-31 17:02:30"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:04:39"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:04:39"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:04:39"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:04:43"}
+{"level":"info","message":"POST /api/loan-applications 201 361 - 6927.636 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"John Doe\",\"email\":\"john.doe@example.com\",\"pincode\":\"380015\",\"loanAmount\":500000,\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\"}","timestamp":"2025-07-31 17:06:35"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:13:47"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:13:48"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:13:48"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:13:52"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:14:08"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:14:09"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:14:10"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:14:13"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:15:08"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:15:10"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:15:10"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:15:14"}
+{"level":"info","message":"POST /api/loan-applications 201 361 - 7045.269 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"John Doe\",\"email\":\"john.doe@example.com\",\"pincode\":\"380015\",\"loanAmount\":500000,\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\"}","timestamp":"2025-07-31 17:15:40"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:16:49"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:16:50"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:16:50"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:16:54"}
+{"level":"info","message":"POST /api/loan-applications 201 361 - 7050.303 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"John Doe\",\"email\":\"john.doe@example.com\",\"pincode\":\"380015\",\"loanAmount\":500000,\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\"}","timestamp":"2025-07-31 17:17:28"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:18:19"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:18:20"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:18:20"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:18:24"}
+{"level":"info","message":"POST /api/loan-applications 201 361 - 8609.431 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"John Doe\",\"email\":\"john.doe@example.com\",\"pincode\":\"380015\",\"loanAmount\":500000,\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\"}","timestamp":"2025-07-31 17:18:41"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:20:15"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:20:16"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:20:16"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:20:20"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:20:52"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:20:54"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:20:54"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:20:57"}
+{"level":"info","message":"POST /api/loan-applications 201 361 - 6826.850 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"John Doe\",\"email\":\"john.doe@example.com\",\"pincode\":\"380015\",\"loanAmount\":500000,\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\"}","timestamp":"2025-07-31 17:21:08"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:24:50"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:24:51"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:24:51"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:24:55"}
+{"level":"info","message":"POST /api/loan-applications 201 361 - 6863.610 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"John Doe\",\"email\":\"john.doe@example.com\",\"pincode\":\"380015\",\"loanAmount\":500000,\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\"}","timestamp":"2025-07-31 17:25:07"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:26:08"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:26:09"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:26:09"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:26:12"}
+{"level":"error","message":"Failed to send confirmation email: isHtml is not defined","timestamp":"2025-07-31 17:26:18"}
+{"level":"error","message":"Failed to send admin notification email: isHtml is not defined","timestamp":"2025-07-31 17:26:18"}
+{"level":"info","message":"POST /api/loan-applications 201 361 - 331.801 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"John Doe\",\"email\":\"john.doe@example.com\",\"pincode\":\"380015\",\"loanAmount\":500000,\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\"}","timestamp":"2025-07-31 17:26:18"}
+{"level":"error","message":"Failed to send confirmation email: isHtml is not defined","timestamp":"2025-07-31 17:26:21"}
+{"level":"error","message":"Failed to send admin notification email: isHtml is not defined","timestamp":"2025-07-31 17:26:21"}
+{"level":"info","message":"POST /api/loan-applications 201 361 - 315.862 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"John Doe\",\"email\":\"john.doe@example.com\",\"pincode\":\"380015\",\"loanAmount\":500000,\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\"}","timestamp":"2025-07-31 17:26:21"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:26:47"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:26:47"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:26:47"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:26:50"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:27:35"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:27:36"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:27:36"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:27:39"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:28:23"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:28:24"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:28:24"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:28:27"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:28:33"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:28:34"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:28:34"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:28:37"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:29:04"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:29:05"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:29:05"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:29:09"}
+{"level":"info","message":"POST /api/loan-applications 201 361 - 7395.914 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"John Doe\",\"email\":\"john.doe@example.com\",\"pincode\":\"380015\",\"loanAmount\":500000,\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\"}","timestamp":"2025-07-31 17:29:23"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:31:01"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:31:02"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:31:02"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:31:05"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:31:07"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:31:08"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:31:08"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:31:11"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:32:59"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:33:00"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:33:00"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:33:04"}
+{"level":"info","message":"POST /api/loan-applications 201 361 - 7925.309 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"John Doe\",\"email\":\"john.doe@example.com\",\"pincode\":\"380015\",\"loanAmount\":500000,\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\"}","timestamp":"2025-07-31 17:33:29"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:34:36"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:34:36"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:34:36"}
+{"level":"info","message":"MongoDB Connected: ac-uryfirg-shard-00-00.s5srhlv.mongodb.net","timestamp":"2025-07-31 17:34:39"}
+{"level":"info","message":"POST /api/loan-applications 201 361 - 9028.693 ms - {\"loanType\":\"Business Loan\",\"fullName\":\"John Doe\",\"email\":\"john.doe@example.com\",\"pincode\":\"380015\",\"loanAmount\":500000,\"phoneNumber\":\"9876543210\",\"businessType\":\"Retail\",\"securityType\":\"Property\"}","timestamp":"2025-07-31 17:34:51"}
+{"level":"info","message":"Using SMTP: smtp.gmail.com:465, secure=true","timestamp":"2025-07-31 17:37:09"}
+{"level":"info","message":"Server running in development mode on port 3000","timestamp":"2025-07-31 17:37:10"}
+{"level":"info","message":"API Documentation available at http://localhost:3000/api-docs","timestamp":"2025-07-31 17:37:10"}

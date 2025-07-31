@@ -155,7 +155,7 @@ const LoanApplicationSchema = new mongoose.Schema({
     enum: ['pending', 'reviewing', 'approved', 'rejected'],
     default: 'pending'
   },
-  subService: {
+  service: {
     type: String,
     trim: true,
   },

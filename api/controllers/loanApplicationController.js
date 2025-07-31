@@ -82,7 +82,7 @@ const loanApplicationController = {
         businessVintageYear,
         factoryOwnership,
         residentOwnership,
-        subService
+        service
       } = req.body;
       
       // Basic validation
@@ -114,7 +114,7 @@ const loanApplicationController = {
         businessVintageYear,
         factoryOwnership,
         residentOwnership,
-        subService
+        service
       };
       
       const result = await loanApplicationService.createApplication(applicationData);
