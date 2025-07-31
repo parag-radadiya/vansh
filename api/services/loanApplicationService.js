@@ -155,7 +155,7 @@ class LoanApplicationService {
           <tr><td><strong>Business Type:</strong></td><td>${application.businessType}</td></tr>
           <tr><td><strong>Security Type:</strong></td><td>${application.securityType}</td></tr>
           <tr><td><strong>Business Name:</strong></td><td>${application.businessName}</td></tr>
-          <tr><td><strong>Business Vintage Year:</strong></td><td>${application.businessVintage}</td></tr>
+          <tr><td><strong>Business Vintage Year:</strong></td><td>${application.businessVintageYear}</td></tr>
           <tr><td><strong>Factory Ownership:</strong></td><td>${application.factoryOwnership}</td></tr>
           <tr><td><strong>Resident Ownership:</strong></td><td>${application.residentOwnership}</td></tr>
         </tbody>
