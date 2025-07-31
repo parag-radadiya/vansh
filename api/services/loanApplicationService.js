@@ -125,12 +125,23 @@ class LoanApplicationService {
     try {
       const application = await LoanApplication.create(applicationData);
 
+      // Format loan amount for display
+      const formattedAmount = `₹${Number(application.loanAmount).toLocaleString('en-IN')}`;
+
       // Send confirmation email to applicant
       try {
         await emailService.sendEmail({
           to: application.email,
           subject: 'Loan Application Received',
-          text: `Dear ${application.fullName},\n\nThank you for applying for a ${application.loanType}. We have received your application and will review it shortly.\n\nYour application reference number is: ${application._id}\n\nBest regards,\nThe Loan Team`
+          html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto;">
+            <h2 style="color: #333;">Thank You for Your Application</h2>
+            <p>Dear ${application.fullName},</p>
+            <p>Thank you for applying for a <strong>${application.loanType}</strong>. We have received your application and will review it shortly.</p>
+            <p>Your application reference number is: <strong>${application._id}</strong></p>
+            <p>Best regards,<br>The Loan Team</p>
+          </div>
+        `
         });
       } catch (emailError) {
         logger.error(`Failed to send confirmation email: ${emailError.message}`);
@@ -139,10 +150,32 @@ class LoanApplicationService {
 
       // Send notification email to admin
       try {
+        const adminHtml = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto;">
+          <h2 style="color: #333;">📋 Loan Application Details</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tbody>
+              <tr><td><strong>Loan Type:</strong></td><td>${application.loanType}</td></tr>
+              <tr><td><strong>Full Name:</strong></td><td>${application.fullName}</td></tr>
+              <tr><td><strong>Email:</strong></td><td>${application.email}</td></tr>
+              <tr><td><strong>Phone Number:</strong></td><td>${application.phoneNumber}</td></tr>
+              <tr><td><strong>Pincode:</strong></td><td>${application.pincode}</td></tr>
+              <tr><td><strong>Loan Amount:</strong></td><td>${formattedAmount}</td></tr>
+              <tr><td><strong>Business Type:</strong></td><td>${application.businessType}</td></tr>
+              <tr><td><strong>Security Type:</strong></td><td>${application.securityType}</td></tr>
+              <tr><td><strong>Business Name:</strong></td><td>${application.businessName}</td></tr>
+              <tr><td><strong>Business Vintage Year:</strong></td><td>${application.businessVintage}</td></tr>
+              <tr><td><strong>Factory Ownership:</strong></td><td>${application.factoryOwnership}</td></tr>
+              <tr><td><strong>Resident Ownership:</strong></td><td>${application.residentOwnership}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+
         await emailService.sendEmail({
           to: process.env.ADMIN_EMAIL || 'admin@example.com',
           subject: 'New Loan Application',
-          text: `New loan application received:\n\nLoan Type: ${application.loanType}\nName: ${application.fullName}\nEmail: ${application.email}\nPhone: ${application.phoneNumber}\nAmount: ₹${application.loanAmount}\nReference ID: ${application._id}`
+          html: adminHtml
         });
       } catch (emailError) {
         logger.error(`Failed to send admin notification email: ${emailError.message}`);
@@ -158,12 +191,14 @@ class LoanApplicationService {
       return {
         success: false,
         error: error.message,
-        statusCode: error.name === 'ValidationError'
-            ? httpStatus.BAD_REQUEST
-            : httpStatus.INTERNAL_SERVER_ERROR
+        statusCode:
+            error.name === 'ValidationError'
+                ? httpStatus.BAD_REQUEST
+                : httpStatus.INTERNAL_SERVER_ERROR
       };
     }
   }
+
 
 
   /**
