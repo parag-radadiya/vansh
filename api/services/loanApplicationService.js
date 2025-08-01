@@ -146,6 +146,7 @@ class LoanApplicationService {
       <h2 style="color: #333;">📋 Loan Application Details</h2>
       <table style="width: 100%; border-collapse: collapse;">
         <tbody>
+          <tr><td><strong>Service Name</strong></td><td>${application.service}</td></tr>
           <tr><td><strong>Loan Type:</strong></td><td>${application.loanType}</td></tr>
           <tr><td><strong>Full Name:</strong></td><td>${application.fullName}</td></tr>
           <tr><td><strong>Email:</strong></td><td>${application.email}</td></tr>
