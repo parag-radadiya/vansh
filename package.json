@@ -4,14 +4,14 @@
   "description": "A Node.js app ready for deployment on Vercel",
   "main": "api/index.js",
   "scripts": {
-    "start": "node api/index.js",
+    "start": "node api.js && node api/index.js",
     "start:pm2": "pm2 start ecosystem.config.js",
-    "dev": "nodemon api/index.js",
+    "dev": "node api.js && nodemon api/index.js",
     "docs": "jsdoc -c jsdoc.json",
     "lint": "eslint . --ext .js",
     "lint:fix": "eslint . --ext .js --fix",
     "test": "jest --detectOpenHandles",
-    "build": "NODE_ENV=production node api/index.js",
+    "build": "node api.js && NODE_ENV=production node api/index.js",
     "generate:postman": "node scripts/generate-postman-collection.js"
   },
   "dependencies": {
